@@ -405,11 +405,22 @@ a.back-to-top:hover, a.back-to-top:focus {
     font-size: 50px;
 }
 
+@media (width <= 1024px) {
+#hero-area .contents .head-title {
+    color: #1E407C;
+    font-size: 64px;
+    letter-spacing: 7px;
+    font-weight: 700;
+}
+}
+
+@media (width > 1024px) {
 #hero-area .contents .head-title {
     color: #1E407C;
     font-size: 96px;
-    letter-spacing: 10px;
+    letter-spacing: 7px;
     font-weight: 700;
+}
 }
 
 #hero-area .contents p {
