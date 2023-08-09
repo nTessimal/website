@@ -1,24 +1,21 @@
 (function($) {
-  
-  "use strict";  
+
+  "use strict";
 
   $(window).on('load', function() {
 
-  /* 
-   One Page Navigation & wow js
-   ========================================================================== */
+   /* One Page Navigation & wow js  */
     var OnePNav = $('.onepage-nev');
     var top_offset = OnePNav.height() - -0;
     OnePNav.onePageNav({
       currentClass: 'active',
       scrollOffset: top_offset,
     });
-  
-  /*Page Loader active
-    ========================================================*/
+
+    /* Page Loader active */
     $('#preloader').fadeOut();
 
-  // Sticky Nav
+    // Sticky Nav
     $(window).on('scroll', function() {
         if ($(window).scrollTop() > 200) {
             $('.scrolling-navbar').addClass('top-nav-collapse');
@@ -27,7 +24,7 @@
         }
     });
 
-    /* slicknav mobile menu active  */
+    /* slicknav mobile menu active */
     $('.mobile-menu').slicknav({
         prependTo: '.navbar-header',
         parentTag: 'liner',
@@ -38,29 +35,19 @@
         openedSymbol: '<i class="icon-arrow-down"></i>',
       });
 
-      /* WOW Scroll Spy
-    ========================================================*/
+    /* WOW Scroll Spy */
      var wow = new WOW({
-      //disabled for mobile
+        // disabled for mobile
         mobile: false
     });
 
     wow.init();
 
-    /* Nivo Lightbox 
-    ========================================================*/
+    /* Nivo Lightbox */
     $('.lightbox').nivoLightbox({
         effect: 'fadeScale',
         keyboardNav: true,
-      });
-
-    /* Counter
-    ========================================================*/
-    $('.counterUp').counterUp({
-     delay: 10,
-     time: 1000
     });
-
-  });      
+  });
 
 }(jQuery));
