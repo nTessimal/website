@@ -397,6 +397,10 @@ a.back-to-top:hover, a.back-to-top:focus {
     padding: 175px 0px 512px;
 }
 
+#hero-area .contents img {
+    max-width: 75%;
+}
+
 #hero-area .contents h5 {
     font-size: 50px;
 }
