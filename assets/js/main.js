@@ -33,7 +33,7 @@
         label: '',
         closedSymbol: '<i class="icon-arrow-right"></i>',
         openedSymbol: '<i class="icon-arrow-down"></i>',
-      });
+    });
 
     /* WOW Scroll Spy */
      var wow = new WOW({
