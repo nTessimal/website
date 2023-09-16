@@ -391,11 +391,11 @@ a.back-to-top:hover, a.back-to-top:focus {
     height: 100%;
     top: 0px;
     left: 0px;
-    opacity: 0.5;
+    opacity: 0.75;
 }
 
 #hero-area .contents {
-    padding: 175px 0px 512px;
+    padding: 128px 0px 512px;
 }
 
 #hero-area .contents img {
@@ -403,7 +403,8 @@ a.back-to-top:hover, a.back-to-top:focus {
 }
 
 #hero-area .contents h5 {
-    font-size: 50px;
+    font-size: 36px;
+    color: #001e44;
 }
 
 @media (width <= 512px) {
@@ -496,7 +497,7 @@ a.back-to-top:hover, a.back-to-top:focus {
     display: block;
     margin: 0 auto;
     height: 48px;
-    color: #00b4d9;
+    color: #001e44;
 }
 
 .services-item .services-content h3 {
@@ -527,7 +528,7 @@ a.back-to-top:hover, a.back-to-top:focus {
 }
 
 .list-unstyled li {
-    color: #d9534f;
+    color: #001e44;
 }
 
 .footer-area {
@@ -541,7 +542,7 @@ a.back-to-top:hover, a.back-to-top:focus {
 }
 
 .footer-area .footer-text p a {
-    color: #00b4d9;
+    color: #001e44;
 }
 
 .footer-area .footer-text .nav-inline .nav-link {
@@ -550,5 +551,5 @@ a.back-to-top:hover, a.back-to-top:focus {
 }
 
 .footer-area .footer-text .nav-inline .nav-link:hover {
-    color: #00b4d9;
+    color: #001e44;
 }
