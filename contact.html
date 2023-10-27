@@ -25,11 +25,11 @@
         /// @function submit_contact
         function submit_contact()
         {
-            //let email = document.getElementById("email").value;
+            let email = atob('bWF0dC5iYXVlckBudGVzc2ltYWwuY29t');
             let subject = document.getElementById("subject").value;
             let message = document.getElementById("message").value;
 
-            let mailto_str = 'mailto:test@example.com?subject=' + subject +'&body=' + message;
+            let mailto_str = 'mailto:' + email + '?subject=' + subject +'&body=' + message;
             window.open(mailto_str);
         }
     </script>
@@ -46,11 +46,10 @@
     <header id="header-wrap">
         <div id="hero-area" class="hero-area-bg">
             <div class="container">
+            <div class="row">
                 <div class="col-md-12 col-sm-12 text-center">
                     <div class="contents">
                         <form name="contact_us" action="javascript:submit_contact()" accept-charset="utf-8">
-<!--                        <label for="email">Your Email</label><br>
-                            <textarea id="email" rows="1" placeholder="yourname@example.com" required></textarea><br>-->
                             <label for="subject">Subject</label><br>
                             <textarea id="subject" rows="1" placeholder="Subject" required></textarea><br>
                             <label for="message">Message</label><br>
@@ -58,6 +57,7 @@
                             <input type="submit" value="Send">
                         </form>
                     </div>
+                </div>
                 </div>
             </div>
         </div>

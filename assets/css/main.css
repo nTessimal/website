@@ -409,6 +409,19 @@ a.back-to-top:hover, a.back-to-top:focus {
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
+@media (width <= 512px) {
+form {
+    padding: 1em;
+    background: #f9f9f9;
+    border: 1px solid #c1c1c1;
+    margin-top: 2rem;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+}
+
+@media (width > 512px) {
 form {
     padding: 1em;
     background: #f9f9f9;
@@ -417,13 +430,14 @@ form {
     max-width: 80%;
     margin-left: auto;
     margin-right: auto;
-    padding: 1em;
 }
 form input {
     margin-bottom: 1rem;
     background: #fff;
     border: 1px solid #9c9c9c;
 }
+}
+
 form textarea {
     width: 100%;
     margin-bottom: 1rem;
@@ -449,25 +463,6 @@ form input {
 }
 input:focus {
     outline: 3px solid silver;
-}
-
-@media (min-width: 512px) {
-form {
-    overflow: hidden;
-}
-
-label {
-    color: black;
-    width: 200px;
-}
-
-input {
-    width: calc(100% - 200px);
-}
-
-button {
-    width: calc(100% - 200px);
-}
 }
 
 @media (width <= 512px) {
