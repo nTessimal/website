@@ -573,10 +573,6 @@ input:focus {
     color: #666;
 }
 
-.services-item .services-content h3 a:hover {
-    color: #00b4d9;
-}
-
 .services-item .services-content p {
     line-height: 22px;
 }
@@ -591,6 +587,14 @@ input:focus {
 
 .list-unstyled li {
     color: #001e44;
+}
+
+.divider-area {
+    background: #1C1C20;
+}
+
+.news {
+    background: #F0F0F0;
 }
 
 .footer-area {
