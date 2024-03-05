@@ -383,6 +383,10 @@ a.back-to-top:hover, a.back-to-top:focus {
     background-size: cover;
 }
 
+.hero-area-bg2 {
+    background: #1E407C;
+}
+
 #hero-area {
     color: #fff;
     overflow: hidden;
