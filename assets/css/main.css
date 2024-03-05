@@ -621,5 +621,16 @@ input:focus {
 }
 
 .row div {
-    justify-content: center
+    justify-content: center;
+}
+
+.copyright {
+    background: #1C1C20;
+}
+
+.copyright p {
+    box-align: center;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    color: #fff;
 }
