@@ -380,6 +380,7 @@ a.back-to-top:hover, a.back-to-top:focus {
 
 .hero-area-bg {
     background: url(../img/hero-area.png) no-repeat;
+    background-position: center;
     background-size: cover;
 }
 
@@ -569,6 +570,7 @@ input:focus {
 .services-item .services-content h3 {
     margin-top: 10px;
     margin-bottom: 10px;
+    text-align: center;
 }
 
 .services-item .services-content h3 a {
@@ -637,4 +639,40 @@ input:focus {
     padding-left: 10px;
     padding-bottom: 10px;
     color: #fff;
+}
+
+.article h1 {
+    font-size: 48px;
+    font-weight: 700;
+    font-family: "Krungthep";
+    text-shadow: -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff, 1px 1px 0 #ffffff;
+}
+
+.article h2, h3, h4 {
+    font-size: 24px;
+    font-weight: 700;
+    font-family: "New Times Roman";
+    text-align: left;
+}
+
+#figure .article {
+    text-align: center;
+}
+
+.article p {
+    font-size: 18px;
+    font-family: "New Times Roman";
+    text-align: left;
+}
+
+.article {
+    background: #F0F0F0;
+    color: #001e44;
+}
+
+.news-area-bg {
+    background: url(../img/hex-fade.png) no-repeat;
+    background-position: 100% 0%;
+    background-size: 50%;
+    background-color: rgb(30, 64, 124, 1);
 }
