@@ -653,6 +653,7 @@ input:focus {
     font-weight: 700;
     font-family: "New Times Roman";
     text-align: left;
+    padding: 10px;
 }
 
 #figure .article {
@@ -663,16 +664,19 @@ input:focus {
     font-size: 18px;
     font-family: "New Times Roman";
     text-align: left;
+    padding: 10px;
 }
 
 .article img {
     max-width: 90%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .article {
     background: url(../img/hex-fade.png) no-repeat;
     background-position: 100% 0%;
-    background-size: 50%;
     background-color: #F0F0F0;
     color: #001e44;
 }
@@ -680,6 +684,5 @@ input:focus {
 .news-area-bg {
     background: url(../img/hex-fade.png) no-repeat;
     background-position: 100% 0%;
-    background-size: 50%;
     background-color: rgb(30, 64, 124, 1);
 }
