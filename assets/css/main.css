@@ -665,8 +665,15 @@ input:focus {
     text-align: left;
 }
 
+.article img {
+    max-width: 90%;
+}
+
 .article {
-    background: #F0F0F0;
+    background: url(../img/hex-fade.png) no-repeat;
+    background-position: 100% 0%;
+    background-size: 50%;
+    background-color: #F0F0F0;
     color: #001e44;
 }
 
