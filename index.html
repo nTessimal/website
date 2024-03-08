@@ -24,10 +24,7 @@
     <!-- Nav Bar Start -->
     <div id="navbar" class="navbar">
         <nav>
-            <ul>
-                <li><a href="index.html"><img src="assets/img/logo-only-white.png" width="32" alt="Logo"> nTessimal</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-            </ul>
+            <div class="navdiv"></div>
         </nav>
     </div>
     <!-- Nav Bar End -->
@@ -40,7 +37,7 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12 text-center">
                     <div class="contents">
-                        <img src="assets/img/logo-only.png" width="512" margin="10px" alt="Logo">
+                        <img src="assets/img/logo-only-border.png" width="512" margin="10px" alt="Logo">
                         <h1 class="head-title wow fadeInUp" data-wow-delay="0.2s">nTessimal</h1>
                         <div class="header-button wow fadeInUp" data-wow-delay="1s"></div>
                         <h5>Enabling novel nanoparticle based electronics</h5>
@@ -135,6 +132,7 @@
 
     <script>
         $(function (){
+            $(".navdiv").load("nav.html");
             $(".footerdiv").load("footer.html");
         });
     </script>
