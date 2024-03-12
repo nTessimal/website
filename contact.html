@@ -37,9 +37,7 @@
     <!-- Nav Bar Start -->
     <div id="navbar" class="navbar">
         <nav>
-            <ul>
-                <li><a href="index.html"><img src="assets/img/logo-only-white.png" width="32" alt="Logo"> nTessimal</a></li>
-            </ul>
+            <div class="navdiv"></div>
         </nav>
     </div>
     <!-- Nav Bar End -->
@@ -72,17 +70,7 @@
         <div class="row">
             <div class="col-md-12">
             <div class="footer-text text-center wow fadeInDown" data-wow-delay="0.3s">
-                <ul class="social-icon">
-                    <li>
-                        <a class="contact" href="contact.html" alt="Contact"><i class="icon-envelope"></i></a>
-                    </li>
-                    <li>
-                        <a class="github" href="https://github.com/nTessimal" alt="GitHub"><i class="icon-social-github"></i></a>
-                    </li>
-                    <li>
-                        <a class="linkedin" href="https://www.linkedin.com/company/ntessimal/" alt="LinkedIn"><i class="icon-social-linkedin"></i></a>
-                    </li>
-                </ul>
+                <div class="footerdiv"></div>
             </div>
             </div>
         </div>
@@ -107,5 +95,11 @@
     <script src="assets/js/main.js"></script>
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 
+    <script>
+        $(function (){
+            $(".navdiv").load("nav.html");
+            $(".footerdiv").load("footer.html");
+        });
+    </script>
 </body>
 </html>
