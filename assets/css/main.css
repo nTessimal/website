@@ -5,7 +5,7 @@ html {
 }
 
 body {
-    background: #fff;
+    background: white;
     font-size: 14px;
     font-weight: 400;
     font-family: "Krungthep";
@@ -83,9 +83,7 @@ ul li, ol li {
     border-radius: 0px;
     cursor: pointer;
     font-weight: 400;
-    color: #fff;
-    border-radius: 4px;
-    text-transform: uppercase;
+    color: white;
     -webkit-transition: all 0.2s linear;
     -moz-transition: all 0.2s linear;
     -o-transition: all 0.2s linear;
@@ -97,27 +95,18 @@ ul li, ol li {
 .btn:active {
     box-shadow: none;
     outline: none;
-    color: #fff;
+    color: white;
 }
 
 .btn-common {
-    background-color: #00b4d9;
+    background-color: gray;
     position: relative;
     z-index: 1;
 }
 
 .btn-common:hover {
-    color: #fff;
-    background-color: #21cff3;
-    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.1);
-    transition: all .2s ease-in-out;
-    -moz-transition: all .2s ease-in-out;
-    -webkit-transition: all .2s ease-in-out;
-}
-
-.btn-danger:hover {
-    background-color: #f55262;
-    border-color: #f55262;
+    color: white;
+    background-color: gray;
     box-shadow: 0 6px 22px rgba(0, 0, 0, 0.1);
     transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
@@ -125,15 +114,15 @@ ul li, ol li {
 }
 
 .btn-border {
-    color: #fff;
+    color: white;
     background-color: transparent;
-    border: 1px solid #fff;
+    border: 1px solid white;
 }
 
 .btn-border:hover {
-    border: 1px solid #fff;
-    color: #fff;
+    color: white;
     background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid white;
 }
 
 .btn-lg {
@@ -160,8 +149,8 @@ button:focus {
 }
 
 .social-icon li a {
-    color: #000;
-    background: #fff;
+    color: black;
+    background: white;
     width: 35px;
     height: 35px;
     line-height: 38px;
@@ -177,7 +166,7 @@ button:focus {
 }
 
 .social-icon li a:hover {
-    color: #fff;
+    color: white;
 }
 
 .social-icon li .facebook:hover {
@@ -215,7 +204,7 @@ a.back-to-top i {
     width: 40px;
     height: 40px;
     line-height: 40px;
-    color: #fff;
+    color: white;
     background: #00b4d9;
     border-radius: 2px;
     text-align: center;
@@ -247,7 +236,7 @@ a.back-to-top:hover, a.back-to-top:focus {
 }
 
 #about .img-thumb img {
-    border: 8px solid #fff;
+    border: 8px solid white;
     box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
 }
 
@@ -257,95 +246,7 @@ a.back-to-top:hover, a.back-to-top:focus {
 }
 
 .navbar {
-    color: #ffffff;
-}
-
-.dropdown-toggle::after {
-    display: none;
-}
-
-.dropdown-menu {
-    margin: 0;
-    padding: 0;
-    display: none;
-    position: absolute;
-    z-index: 99;
-    min-width: 210px;
-    background-color: #fff;
-    white-space: nowrap;
-    border-radius: 4px;
-    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-    animation: fadeIn 0.4s;
-    -webkit-animation: fadeIn 0.4s;
-    -moz-animation: fadeIn 0.4s;
-    -o-animation: fadeIn 0.4s;
-    -ms-animation: fadeIn 0.4s;
-}
-
-.dropdown-menu:before {
-    content: "";
-    display: inline-block;
-    position: absolute;
-    bottom: 100%;
-    left: 20%;
-    margin-left: -5px;
-    border-right: 10px solid transparent;
-    border-left: 10px solid transparent;
-    border-bottom: 10px solid #fff;
-}
-
-.dropdown:hover .dropdown-menu {
-    display: block;
-    position: absolute;
-    text-align: left;
-    top: 100%;
-    border: none;
-    animation: fadeIn 0.4s;
-    -webkit-animation: fadeIn 0.4s;
-    -moz-animation: fadeIn 0.4s;
-    -o-animation: fadeIn 0.4s;
-    -ms-animation: fadeIn 0.4s;
-}
-
-.dropdown .dropdown-menu .dropdown-item {
-    width: 100%;
-    padding: 12px 20px;
-    font-size: 14px;
-    color: #333;
-    border-bottom: 1px solid #f1f1f1;
-    text-decoration: none;
-    display: inline-block;
-    float: left;
-    clear: both;
-    position: relative;
-    outline: 0;
-    transition: all 0.3s ease-in-out;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    -ms-transition: all 0.3s ease-in-out;
-}
-
-.dropdown .dropdown-menu .dropdown-item:last-child {
-    border-bottom: none;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-}
-
-.dropdown .dropdown-menu .dropdown-item:first-child {
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-}
-
-.dropdown .dropdown-item:focus,
-.dropdown .dropdown-item:hover,
-.dropdown .dropdown-item.active {
-    color: #00b4d9;
-}
-
-.dropdown-item.active, .dropdown-item:active {
-    background: transparent;
+    color: white;
 }
 
 .fadeInUpMenu {
@@ -389,7 +290,7 @@ a.back-to-top:hover, a.back-to-top:focus {
 }
 
 #hero-area {
-    color: #fff;
+    color: white;
     overflow: hidden;
     position: relative;
 }
@@ -413,7 +314,7 @@ a.back-to-top:hover, a.back-to-top:focus {
 
 #hero-area .contents h5 {
     font-size: 36px;
-    color: #ffffff;
+    color: white;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
@@ -441,7 +342,7 @@ form {
 }
 form input {
     margin-bottom: 1rem;
-    background: #fff;
+    background: white;
     border: 1px solid #9c9c9c;
 }
 }
@@ -449,7 +350,7 @@ form input {
 form textarea {
     width: 100%;
     margin-bottom: 1rem;
-    background: #fff;
+    background: white;
     padding: 0.5em;
     border: 1px solid #9c9c9c;
 }
@@ -511,7 +412,7 @@ input:focus {
 
 #hero-area .contents p {
     font-size: 30px;
-    color: #fff;
+    color: white;
     font-weight: 400;
     line-height: 30px;
     margin-bottom: 25px;
@@ -527,7 +428,7 @@ input:focus {
 }
 
 #hero-area .banner_bottom_btn i {
-    color: #fff;
+    color: white;
     font-size: 48px;
     -webkit-transition: all 0.2s linear;
     -moz-transition: all 0.2s linear;
@@ -545,7 +446,7 @@ input:focus {
 
 .services-item {
     font-size: 64px;
-    background: #fff;
+    background: white;
     border-radius: 4px;
     padding: 75px 30px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
@@ -610,7 +511,7 @@ input:focus {
 .footer-area .footer-text p {
     font-size: 14px;
     margin-top: 20px;
-    color: #fff;
+    color: white;
 }
 
 .footer-area .footer-text p a {
@@ -638,7 +539,7 @@ input:focus {
     box-align: center;
     padding-left: 10px;
     padding-bottom: 10px;
-    color: #fff;
+    color: white;
 }
 
 .article h1 {
@@ -687,4 +588,50 @@ input:focus {
         url('../img/hex-fade.png') no-repeat;
     background-position: 100% 0%;
     background-color: rgb(30, 64, 124, 1);
+}
+
+.dropdown-btn {
+    font-size: 14px;
+    padding: 8px 4px;
+    border-radius: 0px;
+    border: 0px;
+    cursor: pointer;
+    font-weight: 400;
+    color: white;
+    background: #1C1C20;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1;}
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.dropdown .dropdown-item:focus,
+.dropdown .dropdown-item:hover,
+.dropdown .dropdown-item.active {
+    color: white;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    background: transparent;
 }
