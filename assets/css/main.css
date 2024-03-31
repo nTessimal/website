@@ -575,11 +575,17 @@ input:focus {
     margin-right: auto;
 }
 
+@media (width > 1024px) {
 .article {
     background: url(../img/hex-fade.png) no-repeat;
     background-position: 100% 0%;
     background-color: #F0F0F0;
     color: #001e44;
+}
+}
+
+.article a {
+    color: black;
 }
 
 .news-area-bg {
