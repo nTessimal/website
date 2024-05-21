@@ -663,8 +663,34 @@ input:focus {
     background: transparent;
 }
 
-.pad {
+.circle_text {
     padding: 32px;
+    border-radius: 50%;
+}
+
+@media (width <= 768px) {
+.circle_text h1 {
+    text-align: center;
+    color: white;
+    font-size: 36px;
+}
+}
+
+@media (width > 768px) {
+.circle_text h1 {
+    text-align: center;
+    color: white;
+    font-size: 54px;
+}
+}
+
+.circle_text h1 span {
+    height: 200px;
+    position: absolute;
+    width: 20px;
+    left: 0;
+    top: 0;
+    transform-origin: bottom center;
 }
 
 @media (width <= 768px) {
@@ -674,15 +700,12 @@ input:focus {
     height: 256px;
     line-height: 256px;
     border-radius: 50%;
-    font-size: 50px;
-    text-align: center;
-    color: white;
     background: lightgray;
     padding: 8px;
 }
 }
 
-@media (width > 512px) {
+@media (width > 768px) {
 .circle {
     margin: auto;
     width: 512px;
@@ -695,22 +718,4 @@ input:focus {
     background: lightgray;
     padding: 16px;
 }
-}
-
-.circle_text {
-  position: relative;
-    width: 512px;
-  border-radius: 50%;
-  transform: rotate(-50deg);
-}
-
-.circle_text h1 span {
-    font: 26px Monaco, MonoSpace;
-    height: 200px;
-    position: absolute;
-    width: 20px;
-    left: 0;
-    top: 0;
-    transform-origin: bottom center;
-    transform: rotate(10deg);
 }
