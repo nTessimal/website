@@ -662,3 +662,37 @@ input:focus {
 .dropdown-item.active, .dropdown-item:active {
     background: transparent;
 }
+
+.pad {
+    padding: 32px;
+}
+
+.circle {
+    margin: auto;
+    width: 512px;
+    height: 512px;
+    line-height: 500px;
+    border-radius: 50%;
+    font-size: 50px;
+    text-align: center;
+    color: white;
+    background: lightgray;
+}
+
+.circle_text {
+  position: relative;
+    width: 512px;
+  border-radius: 50%;
+  transform: rotate(-50deg);
+}
+
+.circle_text h1 span {
+    font: 26px Monaco, MonoSpace;
+    height: 200px;
+    position: absolute;
+    width: 20px;
+    left: 0;
+    top: 0;
+    transform-origin: bottom center;
+    transform: rotate(10deg);
+}
