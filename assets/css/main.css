@@ -667,16 +667,34 @@ input:focus {
     padding: 32px;
 }
 
+@media (width <= 768px) {
 .circle {
     margin: auto;
-    width: 512px;
-    height: 512px;
-    line-height: 500px;
+    width: 256px;
+    height: 256px;
+    line-height: 256px;
     border-radius: 50%;
     font-size: 50px;
     text-align: center;
     color: white;
     background: lightgray;
+    padding: 8px;
+}
+}
+
+@media (width > 512px) {
+.circle {
+    margin: auto;
+    width: 512px;
+    height: 512px;
+    line-height: 512px;
+    border-radius: 50%;
+    font-size: 50px;
+    text-align: center;
+    color: white;
+    background: lightgray;
+    padding: 16px;
+}
 }
 
 .circle_text {
