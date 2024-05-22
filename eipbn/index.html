@@ -35,23 +35,23 @@
             <div class="col-md-12 col-sm-12 text-center">
                 <div class="contents">
                 <div class="circle_text">
-                    <h1>Poster</h1>
+                    <h1 id="heading1">Poster </h1>
                 </div>
                 <div class="circle">
-                    <a href="nTessimal_EIPBN_Poster.pdf"><img src="../assets/img/poster.svg" width="512" margin="32px" alt=""></a>
+                    <a href="nTessimal_EIPBN_Poster.pdf"><img src="../assets/img/poster.svg" width="512" margin="32px" alt="Poster Download"></a>
                 </div>
                 <div class="circle_text">
-                    <h1>Presentation</h1>
+                    <h1 id="heading2">Slides</h1>
                 </div>
                 <div class="circle">
-                    <a href="nTessimal_EIPBN_Presentation.pdf"><img src="../assets/img/presentation.svg" width="512" margin="32px" alt=""></a>
+                    <a href="nTessimal_EIPBN_Presentation.pdf"><img src="../assets/img/presentation.svg" width="512" margin="32px" alt="Presentation Download"></a>
                 </div>
                 <div class="circle_text">
-                    <h1>Nanotech Bytes</h1>
+                    <h1 id="heading3">Article</h1>
                 </div>
                 <div class="circle">
                     <!-- Icon used by CC Attribution: https://www.svgrepo.com/svg/425524/article-blog-blogging -->
-                    <a href="../nanotech-bytes.html"><img src="../assets/img/blog.svg" width="512" margin="32px" alt=""></a>
+                    <a href="../nanotech-bytes.html"><img src="../assets/img/blog.svg" width="512" margin="32px" alt="Article Link"></a>
                 </div>
                 </div>
             </div>
@@ -89,11 +89,19 @@
     <script src="../assets/js/jquery.easing.min.js"></script>
     <script src="../assets/js/main.js"></script>
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/peterhry/CircleType@2.3.1/dist/circletype.min.js"></script>
 
     <script>
         $(function (){
             $(".navdiv").load("../nav.html");
             $(".footerdiv").load("../footer.html");
+
+            let text1 = new CircleType(document.getElementById('heading1')).radius(384);
+            let text2 = new CircleType(document.getElementById('heading2')).radius(384);
+            let text3 = new CircleType(document.getElementById('heading3')).radius(384);
+            $(text1.element).fitText();
+            $(text2.element).fitText();
+            $(text3.element).fitText();
         });
     </script>
 </body>

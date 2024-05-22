@@ -664,8 +664,7 @@ input:focus {
 }
 
 .circle_text {
-    padding: 32px;
-    border-radius: 50%;
+    padding: 64px 0px 0px 0px;
 }
 
 @media (width <= 768px) {
@@ -684,15 +683,6 @@ input:focus {
 }
 }
 
-.circle_text h1 span {
-    height: 200px;
-    position: absolute;
-    width: 20px;
-    left: 0;
-    top: 0;
-    transform-origin: bottom center;
-}
-
 @media (width <= 768px) {
 .circle {
     margin: auto;
@@ -701,7 +691,6 @@ input:focus {
     line-height: 256px;
     border-radius: 50%;
     background: lightgray;
-    padding: 8px;
 }
 }
 
@@ -712,10 +701,6 @@ input:focus {
     height: 512px;
     line-height: 512px;
     border-radius: 50%;
-    font-size: 50px;
-    text-align: center;
-    color: white;
     background: lightgray;
-    padding: 16px;
 }
 }
