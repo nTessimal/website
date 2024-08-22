@@ -13,12 +13,12 @@
 
 @font-face{
     font-family: "Krungthep";
-    src: url("https://db.onlinewebfonts.com/t/736cf5b08b01082a3645e14038868e20.eot");
-    src: url("https://db.onlinewebfonts.com/t/736cf5b08b01082a3645e14038868e20.eot?#iefix")format("embedded-opentype"),
-        url("https://db.onlinewebfonts.com/t/736cf5b08b01082a3645e14038868e20.woff")format("woff"),
-        url("https://db.onlinewebfonts.com/t/736cf5b08b01082a3645e14038868e20.woff2")format("woff2"),
-        url("https://db.onlinewebfonts.com/t/736cf5b08b01082a3645e14038868e20.ttf")format("truetype"),
-        url("https://db.onlinewebfonts.com/t/736cf5b08b01082a3645e14038868e20.svg#Krungthep")format("svg");
+    src: url("../fonts/736cf5b08b01082a3645e14038868e20.eot");
+    src: url("../fonts/736cf5b08b01082a3645e14038868e20_iefix.eot")format("embedded-opentype"),
+         url("../fonts/736cf5b08b01082a3645e14038868e20.woff")format("woff"),
+         url("../fonts/736cf5b08b01082a3645e14038868e20.woff2")format("woff2"),
+         url("../fonts/736cf5b08b01082a3645e14038868e20.ttf")format("truetype"),
+         url("../fonts/736cf5b08b01082a3645e14038868e20.svg")format("svg");
     font-weight:normal;
     font-style:normal;
     font-display:swap;
