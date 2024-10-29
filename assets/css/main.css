@@ -189,6 +189,37 @@ button:focus {
     background: #CE332A;
 }
 
+.member-organizations p {
+    color: white;
+}
+
+.member-organizations ul {
+    padding-bottom: 20px;
+}
+
+.member-organizations li {
+    display: block;
+}
+
+/* Small screens (mobile) */
+@media (width <= 768px) {
+    .member-organizations img {
+        border: 0;
+        margin: 0;
+        width: 600px;
+        max-width: 75%;
+    }
+}
+
+@media (width > 768px) {
+    .member-organizations img {
+        border: 0;
+        margin: 0;
+        width: 400px;
+        max-width: 33%;
+    }
+}
+
 /* ScrollToTop */
 a.back-to-top {
     display: none;
@@ -254,7 +285,7 @@ a.back-to-top:hover, a.back-to-top:focus {
     animation-name: fadeInUpMenu;
 }
 
-/* only small tablets */
+/* Only small tablets */
 @media (min-width: 768px) and (max-width: 991px) {
     #nav-main li a.nav-link {
         padding-top: 18px;
@@ -318,33 +349,35 @@ a.back-to-top:hover, a.back-to-top:focus {
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
+/* Small screens (mobile) */
 @media (width <= 512px) {
-form {
-    padding: 1em;
-    background: #f9f9f9;
-    border: 1px solid #c1c1c1;
-    margin-top: 2rem;
-    max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-}
+    form {
+        padding: 1em;
+        background: #f9f9f9;
+        border: 1px solid #c1c1c1;
+        margin-top: 2rem;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
+/* Larger screens (larger mobile and desktop) */
 @media (width > 512px) {
-form {
-    padding: 1em;
-    background: #f9f9f9;
-    border: 1px solid #c1c1c1;
-    margin-top: 2rem;
-    max-width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-}
-form input {
-    margin-bottom: 1rem;
-    background: white;
-    border: 1px solid #9c9c9c;
-}
+    form {
+        padding: 1em;
+        background: #f9f9f9;
+        border: 1px solid #c1c1c1;
+        margin-top: 2rem;
+        max-width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    form input {
+        margin-bottom: 1rem;
+        background: white;
+        border: 1px solid #9c9c9c;
+    }
 }
 
 form textarea {
@@ -374,40 +407,44 @@ input:focus {
     outline: 3px solid silver;
 }
 
+/* Small screens (mobile) */
 @media (width <= 512px) {
-#hero-area .contents .head-title {
-    color: #1E407C;
-    font-size: 48px;
-    letter-spacing: 7px;
-    font-weight: 700;
-}
+    #hero-area .contents .head-title {
+        color: #1E407C;
+        font-size: 48px;
+        letter-spacing: 7px;
+        font-weight: 700;
+    }
 }
 
+/* Larger screens (larger mobile) */
 @media (width > 512px) and (width <= 768px) {
-#hero-area .contents .head-title {
-    color: #1E407C;
-    font-size: 84px;
-    letter-spacing: 7px;
-    font-weight: 700;
-}
+    #hero-area .contents .head-title {
+        color: #1E407C;
+        font-size: 84px;
+        letter-spacing: 7px;
+        font-weight: 700;
+    }
 }
 
+/* Larger screens (large mobile and small desktop) */
 @media (width > 768px) and (width <= 1024px) {
-#hero-area .contents .head-title {
-    color: #1E407C;
-    font-size: 84px;
-    letter-spacing: 7px;
-    font-weight: 700;
-}
+    #hero-area .contents .head-title {
+        color: #1E407C;
+        font-size: 84px;
+        letter-spacing: 7px;
+        font-weight: 700;
+    }
 }
 
+/* Larger screens (very large mobile and desktop) */
 @media (width > 1024px) {
-#hero-area .contents .head-title {
-    color: #1E407C;
-    font-size: 96px;
-    letter-spacing: 7px;
-    font-weight: 700;
-}
+    #hero-area .contents .head-title {
+        color: #1E407C;
+        font-size: 96px;
+        letter-spacing: 7px;
+        font-weight: 700;
+    }
 }
 
 #hero-area .contents p {
@@ -597,12 +634,12 @@ input:focus {
 }
 
 @media (width > 1024px) {
-.article {
-    background: url(../img/hex-fade.png) no-repeat;
-    background-position: 100% 0%;
-    background-color: #F0F0F0;
-    color: #001e44;
-}
+    .article {
+        background: url(../img/hex-fade.png) no-repeat;
+        background-position: 100% 0%;
+        background-color: #F0F0F0;
+        color: #001e44;
+    }
 }
 
 .article a {
@@ -668,39 +705,39 @@ input:focus {
 }
 
 @media (width <= 768px) {
-.circle_text h1 {
-    text-align: center;
-    color: white;
-    font-size: 36px;
-}
+    .circle_text h1 {
+        text-align: center;
+        color: white;
+        font-size: 36px;
+    }
 }
 
 @media (width > 768px) {
-.circle_text h1 {
-    text-align: center;
-    color: white;
-    font-size: 54px;
-}
+    .circle_text h1 {
+        text-align: center;
+        color: white;
+        font-size: 54px;
+    }
 }
 
 @media (width <= 768px) {
-.circle {
-    margin: auto;
-    width: 256px;
-    height: 256px;
-    line-height: 256px;
-    border-radius: 50%;
-    background: lightgray;
-}
+    .circle {
+        margin: auto;
+        width: 256px;
+        height: 256px;
+        line-height: 256px;
+        border-radius: 50%;
+        background: lightgray;
+    }
 }
 
 @media (width > 768px) {
-.circle {
-    margin: auto;
-    width: 512px;
-    height: 512px;
-    line-height: 512px;
-    border-radius: 50%;
-    background: lightgray;
-}
+    .circle {
+        margin: auto;
+        width: 512px;
+        height: 512px;
+        line-height: 512px;
+        border-radius: 50%;
+        background: lightgray;
+    }
 }
