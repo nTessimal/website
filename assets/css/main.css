@@ -66,6 +66,10 @@ ul li, ol li {
     margin: 0 10px;
 }
 
+.navbar img {
+    margin-right: 20px;
+}
+
 .section-title {
     color: #252525;
     font-size: 38px;
@@ -206,6 +210,7 @@ button:focus {
     .member-organizations img {
         border: 0;
         margin: 0;
+        margin-bottom: 20px;
         width: 600px;
         max-width: 75%;
     }
@@ -215,6 +220,7 @@ button:focus {
     .member-organizations img {
         border: 0;
         margin: 0;
+        margin-bottom: 40px;
         width: 400px;
         max-width: 33%;
     }
