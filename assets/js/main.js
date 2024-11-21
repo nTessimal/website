@@ -4,7 +4,7 @@
 
   $(window).on('load', function() {
 
-   /* One Page Navigation & wow js  */
+    // One Page Navigation & wow js
     var OnePNav = $('.onepage-nev');
     var top_offset = OnePNav.height() - -0;
     OnePNav.onePageNav({
@@ -12,7 +12,7 @@
       scrollOffset: top_offset,
     });
 
-    /* Page Loader active */
+    // Page Loader active
     $('#preloader').fadeOut();
 
     // Sticky Nav
@@ -24,7 +24,7 @@
         }
     });
 
-    /* slicknav mobile menu active */
+    // slicknav mobile menu active
     $('.mobile-menu').slicknav({
         prependTo: '.navbar-header',
         parentTag: 'liner',
@@ -35,8 +35,8 @@
         openedSymbol: '<i class="icon-arrow-down"></i>',
     });
 
-    /* WOW Scroll Spy */
-     var wow = new WOW({
+    // WOW Scroll Spy
+    var wow = new WOW({
         // disabled for mobile
         mobile: false
     });

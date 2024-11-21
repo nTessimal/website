@@ -21,18 +21,18 @@
 	}
 
 	function initEvents() {
-		openbtn.addEventListener( 'click', toggleMenu );
-		if( closebtn ) {
-			closebtn.addEventListener( 'click', toggleMenu );
+		openbtn.addEventListener('click', toggleMenu);
+		if (closebtn) {
+			closebtn.addEventListener('click', toggleMenu);
 		}		
 	}
 
 	function toggleMenu() {
-		if( isOpen ) {
-			classie.remove( bodyEl, 'show-menu' );
+		if (isOpen) {
+			classie.remove(bodyEl, 'show-menu');
 		}
 		else {
-			classie.add( bodyEl, 'show-menu' );
+			classie.add(bodyEl, 'show-menu');
 		}
 		isOpen = !isOpen;
 	}
