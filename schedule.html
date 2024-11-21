@@ -37,6 +37,10 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12 text-center">
                     <div class="contents">
+                        <div>
+                            <p>Let's Talk...</p>
+                            <p>Schedule a Meeting To Learn More</p>
+                        </div>
                         <div id="calendar"></div>
                     </div>
                 </div>
@@ -81,6 +85,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
 
     <script>
+        /// @function process_calendar_item
+        function process_calendar_item(item) {
+            activity_obj['start'] = unix_time_to_iso_time(item['time']);
+            return item;
+        }
+
         /// @function draw_calendar
         function draw_calendar() {
             $('#calendar').fullCalendar({
@@ -96,8 +106,12 @@
                 timezone: 'local',
                 firstDay: 0,
                 eventSources: [
+                    {
+                        url: "https://p143-caldav.icloud.com/published/2/MjczNTAwNDU0MjczNTAwNI1RG3j4WlR5e44c1qWDyQ5oPbQkotVfYlOFRRyC28wL5tUX9J4iszK3lY8lpjBK-kHDmvbAg4XzfwB6M0LjHxI",
+                    }
                 ],
                 noEventsMessage: 'No events in the specified time range',
+                eventDataTransform: process_calendar_item,
             });
         }
 
