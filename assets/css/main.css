@@ -747,3 +747,7 @@ input:focus {
         background: lightgray;
     }
 }
+
+.schedule_header {
+    margin-bottom: 64px;
+}
