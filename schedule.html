@@ -82,6 +82,7 @@
     <script src="assets/js/iconify-icon.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.5/main.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js" integrity="sha512-hUhvpC5f8cgc04OZb55j0KNGh4eh7dLxd/dPSJ5VyzqDWxsayYbojWyl5Tkcgrmb/RVKCRJI1jNlRbVP4WWC4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script>
         /// @function process_activity_obj
@@ -120,6 +121,7 @@
             json.events = [];
 
             lines.forEach((line) => {
+
                 // Ignore empty lines
                 if (line.trim() === '') return;
 
@@ -159,6 +161,18 @@
             return json;
         }
 
+        /// @function ical_ts_to_fullcal_ts
+        function ical_ts_to_fullcal_ts(key, value) {
+            let parts = key.split(';');
+            var ts = value;
+
+            let subparts = parts[1].split('=');
+            if (subparts[0] == "TZID") {
+                ts += moment().tz(subparts[1]).format('Z');
+            }
+            return ts;
+        }
+
         /// @function draw_calendar
         function draw_calendar() {
             var calendarEl = document.getElementById('calendar');
@@ -166,7 +180,7 @@
             // Initialize the FullCalendar
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 navLinks: true, // can click day/week names to navigate views
-                editable: false,
+                editable: false, // is read-only
                 eventSources: [
                     {
                         events: function(fetchInfo, successCallback, failureCallback) {
@@ -178,9 +192,22 @@
 
                                     successCallback(
                                         events.events.map(function(event) {
+                                            var start_time = "";
+                                            var end_time = "";
+
+                                            for (const [key, value] of Object.entries(event)) {
+                                                if (key.startsWith('DTSTART;')) {
+                                                    start_time = ical_ts_to_fullcal_ts(key, value);
+                                                }
+                                                else if (key.startsWith('DTEND;')) {
+                                                    end_time = ical_ts_to_fullcal_ts(key, value);
+                                                }
+                                            }
+
                                             return {
                                                 title: event['SUMMARY'],
-                                                start: event['DTSTAMP']
+                                                start: start_time,
+                                                end: end_time
                                             }
                                         })
                                     );
