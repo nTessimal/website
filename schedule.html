@@ -143,6 +143,7 @@
                 const value = valueParts.join(':').trim();
 
                 if (isInsideEvent && currentEvent !== null) {
+
                     // Handle multi-line values (e.g., DESCRIPTION with line breaks)
                     if (key.startsWith(' ')) {
                         currentEvent[currentKey] += value; // Append to the previous key
@@ -175,8 +176,14 @@
                                 if (response_code == 200) {
                                     let events = ical_to_json(response_text);
 
-                                    for (i in events) {
-                                    }
+                                    successCallback(
+                                        events.events.map(function(event) {
+                                            return {
+                                                title: event['SUMMARY'],
+                                                start: event['DTSTAMP']
+                                            }
+                                        })
+                                    );
                                 }
                             });
                         },
