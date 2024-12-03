@@ -195,6 +195,7 @@ button:focus {
 
 .member-organizations p {
     color: white;
+    margin-bottom: 20px;
 }
 
 .member-organizations ul {
