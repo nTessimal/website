@@ -751,3 +751,19 @@ input:focus {
 .schedule_header {
     margin-bottom: 64px;
 }
+
+.dialog form {
+    margin: 0;
+    padding: 32px;
+    max-width: 100%;
+}
+
+.dialog div {
+    max-width: 100%;
+}
+
+.dialog input {
+    width: 100%;
+    height: 32px;
+    font-size: 24px;
+}

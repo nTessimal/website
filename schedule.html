@@ -29,6 +29,20 @@
     </div>
     <!-- Nav Bar End -->
 
+    <!-- Dialog Area Start -->
+    <dialog id="schedule_dlg" class="dialog">
+        <form action="javascript:void(0);">
+            Name: <br><input type="text" name="name" id="contact_name" value=""><br>
+            Email: <br><input type="text" name="email" id="contact_email" value=""><br>
+            Phone: <br><input type="text" name="phone" id="contact_phone" value=""><br>
+            <div>
+                <button type="button" onclick="javascript:schedule_dlg.close()">Cancel</button>
+                <button type="submit" onclick="javascript:send_contact()">Send</button>
+            </div>
+        </form>
+    </dialog>
+    <!-- Dialog Area End -->
+
     <!-- Hero Area Start -->
     <header id="header-wrap">
         <div id="hero-area" class="hero-area-bg2">
@@ -85,9 +99,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.46/moment-timezone.min.js"></script>
 
     <script>
+        /// @function show_schedule_dlg
+        function show_schedule_dlg() {
+            schedule_dlg.showModal();
+        }
+
         /// @function process_activity_obj
-        function process_activity_obj(activity_obj) {
-            let i = 0;
+        function process_activity_obj(event_obj) {
+            event_obj.url = "javascript:show_schedule_dlg();";
+            return event_obj;
         }
 
         /// @function send_get_request_async
@@ -223,9 +243,15 @@
             calendar.render();
         };
 
+        $(function (){
+            $(".navdiv").load("nav.html");
+            $(".footerdiv").load("footer.html");
+        });
+
         window.onload = function() {
             draw_calendar();
         };
     </script>
+
 </body>
 </html>
