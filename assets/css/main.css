@@ -768,3 +768,12 @@ input:focus {
     height: 32px;
     font-size: 24px;
 }
+
+.container {
+    width: 80%;
+    font-size: 24px;
+}
+.floated {
+    float: left;
+    width: 20%;
+}
