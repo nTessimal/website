@@ -32,12 +32,13 @@
     <!-- Dialog Area Start -->
     <dialog id="schedule_dlg" class="dialog">
         <form action="javascript:void(0);">
+            <p>words go here</p>
             Name: <br><input type="text" name="name" id="contact_name" value=""><br>
             Email: <br><input type="text" name="email" id="contact_email" value=""><br>
             Phone: <br><input type="text" name="phone" id="contact_phone" value=""><br>
             <div>
                 <button type="button" onclick="javascript:schedule_dlg.close()">Cancel</button>
-                <button type="submit" onclick="javascript:send_contact()">Send</button>
+                <button type="submit" onclick="javascript:send_contact()">Schedule</button>
             </div>
         </form>
     </dialog>
@@ -52,7 +53,7 @@
                     <div class="contents">
                         <div class="schedule_header">
                             <h1>Let's Talk...</h1>
-                            <p>Schedule a Meeting To Learn More</p>
+                            <p>Schedule a Meeting To Learn More By Selecting a Time From the Calendar</p>
                         </div>
                         <div id="calendar"></div>
                     </div>
@@ -100,13 +101,13 @@
 
     <script>
         /// @function show_schedule_dlg
-        function show_schedule_dlg() {
+        function show_schedule_dlg(starttime, endtime) {
             schedule_dlg.showModal();
         }
 
         /// @function process_activity_obj
         function process_activity_obj(event_obj) {
-            event_obj.url = "javascript:show_schedule_dlg();";
+            event_obj.url = "javascript:show_schedule_dlg(" + event_obj.start + "," + event_obj.end + " );";
             return event_obj;
         }
 
@@ -199,6 +200,7 @@
 
             // Initialize the FullCalendar
             var calendar = new FullCalendar.Calendar(calendarEl, {
+                headerToolbar: { center: 'dayGridMonth,timeGridWeek' },
                 navLinks: true, // can click day/week names to navigate views
                 editable: false, // is read-only
                 eventSources: [
