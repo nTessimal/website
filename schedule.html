@@ -34,8 +34,10 @@
         <form action="javascript:void(0);">
             <p>words go here</p>
             Name: <br><input type="text" name="name" id="contact_name" value=""><br>
+            Organization: <br><input type="text" name="organization" id="contact_organization" value=""><br>
             Email: <br><input type="text" name="email" id="contact_email" value=""><br>
             Phone: <br><input type="text" name="phone" id="contact_phone" value=""><br>
+            Notes: <br><textarea name="message" cols="30" id="contact_notes"></textarea>
             <div>
                 <button type="button" onclick="javascript:schedule_dlg.close()">Cancel</button>
                 <button type="submit" onclick="javascript:send_contact()">Schedule</button>
@@ -100,6 +102,45 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.46/moment-timezone.min.js"></script>
 
     <script>
+        /// @function Sends an HTTP POST request and waits for the response.
+        function send_post_request_async(url, params, callback) {
+            let xml_http = new XMLHttpRequest();
+            let content_type = "application/json; charset=utf-8";
+
+            xml_http.open("POST", url, false);
+            xml_http.setRequestHeader('Content-Type', content_type);
+            xml_http.onreadystatechange = function() {
+                if (xml_http.readyState == XMLHttpRequest.DONE) {
+                    callback(xml_http.status, xml_http.responseText);
+                }
+            }
+            json_data = JSON.stringify(params);
+            xml_http.send(json_data);
+        }
+
+        /// @function send_contact
+        function send_contact() {
+            let name_elem = document.getElementById("contact_name");
+            let organization_elem = document.getElementById("contact_organization");
+            let email_elem = document.getElementById("contact_email");
+            let phone_elem = document.getElementById("contact_phone");
+            let notes_elem = document.getElementById("contact_notes");
+
+            // Input validation.
+            if (name_elem.value.length == 0) {
+                alert("Your name cannot be blank.");
+                return;
+            }
+            if (email_elem.value.length == 0) {
+                alert("Your email cannot be blank.");
+                return;
+            }
+            if (phone_elem.value.length == 0) {
+                alert("Your phone number cannot be blank.");
+                return;
+            }
+        }
+
         /// @function show_schedule_dlg
         function show_schedule_dlg(starttime, endtime) {
             schedule_dlg.showModal();
