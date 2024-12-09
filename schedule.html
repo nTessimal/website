@@ -102,7 +102,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.46/moment-timezone.min.js"></script>
 
     <script>
-        /// @function Sends an HTTP POST request and waits for the response.
+        var g_meeting_start = null;
+
+        /// @function send_get_request_async
+        /// Sends an HTTP GET request and waits for the response.
+        function send_get_request_async(url, callback) {
+            let xml_http = new XMLHttpRequest();
+            let content_type = "application/json; charset=utf-8";
+
+            xml_http.open("GET", url, true);
+            xml_http.setRequestHeader('Content-Type', content_type);
+            xml_http.onreadystatechange = function() {
+                if (xml_http.readyState == XMLHttpRequest.DONE) {
+                    callback(xml_http.status, xml_http.responseText);
+                }
+            }
+            xml_http.send();
+        }
+
+        /// @function send_post_request_async
+        /// Sends an HTTP POST request and waits for the response.
         function send_post_request_async(url, params, callback) {
             let xml_http = new XMLHttpRequest();
             let content_type = "application/json; charset=utf-8";
@@ -139,10 +158,27 @@
                 alert("Your phone number cannot be blank.");
                 return;
             }
+
+            // Send.
+            var values = {}
+            values["name"] = name_elem.value
+            values["organization"] = organization_elem.value
+            values["email"] = email_elem.value
+            values["phone"] = phone_elem.value
+            values["notes"] = notes_elem.value
+            values["time"] = g_meeting_start
+            var dest = "";
+            send_post_request_async(dest, values, function(status, response) {
+                if (status == 200)
+                    alert("Success!");
+                else
+                    alert("Fail!");
+            });
         }
 
         /// @function show_schedule_dlg
         function show_schedule_dlg(starttime, endtime) {
+            g_meeting_start = starttime;
             schedule_dlg.showModal();
         }
 
@@ -152,23 +188,7 @@
             return event_obj;
         }
 
-        /// @function send_get_request_async
-        /// Sends an HTTP GET request and waits for the response.
-        function send_get_request_async(url, callback) {
-            let xml_http = new XMLHttpRequest();
-            let content_type = "application/json; charset=utf-8";
-
-            xml_http.open("GET", url, true);
-            xml_http.setRequestHeader('Content-Type', content_type);
-            xml_http.onreadystatechange = function() {
-                if (xml_http.readyState == XMLHttpRequest.DONE) {
-                    callback(xml_http.status, xml_http.responseText);
-                }
-            }
-            xml_http.send();
-        }
-
-        /// @function send_get_request_async
+        /// @function ical_to_json
         /// Converts an iCal string to a JSON object.
         /// @param {string} ical_str - The iCal formatted string.
         /// @returns {Object} JSON representation of the iCal data.
