@@ -184,7 +184,9 @@
 
         /// @function process_activity_obj
         function process_activity_obj(event_obj) {
-            event_obj.url = "javascript:show_schedule_dlg(" + event_obj.start + "," + event_obj.end + " );";
+            var start_date_obj = moment(event_obj.start, "YYYYMMDDThhmmss");
+            var end_date_obj = moment(event_obj.end, "YYYYMMDDThhmmss");
+            event_obj.url = "javascript:show_schedule_dlg(" + start_date_obj + "," + end_date_obj + ");";
             return event_obj;
         }
 
