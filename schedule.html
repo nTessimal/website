@@ -167,8 +167,8 @@
             values["phone"] = phone_elem.value
             values["notes"] = notes_elem.value
             values["time"] = g_meeting_start
-            var dest = "";
-            send_post_request_async(dest, values, function(status, response) {
+            var api_url = "https://ntessimal.tech:5252/api/1.0/submit_meeting_request";
+            send_post_request_async(api_url, values, function(status, response) {
                 if (status == 200)
                     alert("Success!");
                 else
