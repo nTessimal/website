@@ -170,9 +170,9 @@
             var api_url = "https://ntessimal.tech/api/1.0/submit_meeting_request";
             send_post_request_async(api_url, values, function(status, response) {
                 if (status == 200)
-                    alert("Success!");
+                    alert("Your request was submitted, we'll be in touch soon!");
                 else
-                    alert("Fail!");
+                    alert("There was an error processing the request!");
             });
         }
 
