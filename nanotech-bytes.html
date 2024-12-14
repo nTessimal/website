@@ -72,9 +72,32 @@
     <script src="assets/js/iconify-icon.min.js"></script>
 
     <script>
-        $(function (){
+        function parse_params() {
+            var query_params = {};
+            var query = window.location.search.substring(1);
+            var temp_params = query.split('&');
+            for (var i = 0; i < temp_params.length; i++) {
+                var pos = temp_params[i].indexOf('=');
+                if (pos > 0) {
+                    var key = temp_params[i].substring(0, pos);
+                    var val = temp_params[i].substring(pos + 1);
+                    query_params[key] = val;
+                }
+            }
+            return query_params;
+        }
+
+        $(function () {
+            // Extract the article id, default to one if something goes wrong.
+            let params = parse_params();
+            var article_id = 1;
+            if (Object.keys(params).length > 0) {
+                article_id = params["article"];
+            }
+            let article_url = "nanotech-bytes/nanotech-byte" + article_id + ".html";
+
             $(".navdiv").load("nav.html");
-            $(".articlediv").load("nanotech-bytes/nanotech-byte1.html");
+            $(".articlediv").load(article_url);
             $(".footerdiv").load("footer.html");
         });
     </script>
