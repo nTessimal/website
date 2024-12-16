@@ -283,7 +283,6 @@
                     {
                         events: function(fetchInfo, successCallback, failureCallback) {
                             let ical_url = "https://ntessimal.tech/api/1.0/office_hours_calendar";
-//                            let ical_url = "https://p143-caldav.icloud.com/published/2/MjczNTAwNDU0MjczNTAwNI1RG3j4WlR5e44c1qWDyQ5oPbQkotVfYlOFRRyC28wL5tUX9J4iszK3lY8lpjBK-kHDmvbAg4XzfwB6M0LjHxI";
 
                             send_get_request_async(ical_url, "text/calendar", function (response_code, response_text) {
                                 if (response_code == 200) {
