@@ -32,7 +32,7 @@
     <!-- Dialog Area Start -->
     <dialog id="schedule_dlg" class="dialog">
         <form action="javascript:void(0);">
-            <p>words go here</p>
+            <p id="schedule_dlg_intro">words go here</p>
             Name: <br><input type="text" name="name" id="contact_name" value=""><br>
             Organization: <br><input type="text" name="organization" id="contact_organization" value=""><br>
             Email: <br><input type="text" name="email" id="contact_email" value=""><br>
@@ -103,6 +103,18 @@
 
     <script>
         var g_meeting_start = null;
+
+        /// @function unix_time_to_local_string
+        function unix_time_to_local_string(unix_time) {
+            let date = new Date(unix_time);
+            return date.toLocaleString();
+        }
+
+        /// @function unix_time_to_utc_string
+        function unix_time_to_utc_string(unix_time) {
+            let date = new Date(unix_time);
+            return date.toUTCString();
+        }
 
         /// @function is_valid_email
         function is_valid_email(email) {
@@ -192,6 +204,8 @@
         /// @function show_schedule_dlg
         function show_schedule_dlg(starttime, endtime) {
             g_meeting_start = starttime;
+            var paragraph_elem = document.getElementById('schedule_dlg_intro');
+            paragraph_elem.innerHTML = "Tell us a little about yourself and we'll be in touch on " + unix_time_to_local_string(g_meeting_start) + " (" + unix_time_to_utc_string(g_meeting_start) + ")";
             schedule_dlg.showModal();
         }
 
