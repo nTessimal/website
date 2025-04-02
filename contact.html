@@ -21,19 +21,6 @@
 
 <body>
 
-    <script>
-        /// @function submit_contact
-        function submit_contact()
-        {
-            let email = atob('c3RldmUuc255ZGVyQG50ZXNzaW1hbC5jb20');
-            let subject = document.getElementById("subject").value;
-            let message = document.getElementById("message").value;
-
-            let mailto_str = 'mailto:' + email + '?subject=' + subject +'&body=' + message;
-            window.open(mailto_str);
-        }
-    </script>
-
     <!-- Nav Bar Start -->
     <div id="navbar" class="navbar">
         <nav>
@@ -49,16 +36,20 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12 text-center">
                     <div class="contents">
-                        <form name="contact_us" action="javascript:submit_contact()" accept-charset="utf-8">
-                            <label for="subject">Subject</label><br>
-                            <textarea id="subject" rows="1" placeholder="Subject" required></textarea><br>
+                        <form name="contact_us" action="javascript:submit_contact_via_bot()" accept-charset="utf-8">
+                            <label for="name">Name</label><br>
+                            <input type="text" name="name" id="contact_name" value=""><br>
+                            <label for="name">Email</label><br>
+                            <input type="text" name="email" id="contact_email" value=""><br>
+                            <label for="name">Phone</label><br>
+                            <input type="text" name="phone" id="contact_phone" value=""><br>
                             <label for="message">Message</label><br>
                             <textarea id="message" rows="10" required></textarea><br>
                             <input type="submit" value="Send">
                         </form>
                     </div>
                 </div>
-                </div>
+            </div>
             </div>
         </div>
     </header>
@@ -80,7 +71,7 @@
 
     <!-- Copyright Section Start -->
     <section class="copyright">
-        <p class="copyright">Copyright &copy; 2024 nTessimal, LLC</p>
+        <p class="copyright">Copyright &copy; 2025 nTessimal, LLC</p>
     </section>
     <!-- Copyright Section End -->
 
@@ -95,8 +86,66 @@
     <script src="assets/js/jquery.slicknav.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/iconify-icon.min.js"></script>
+    <script src="assets/js/common.js"></script>
 
     <script>
+        /// @function submit_contact_via_email
+        function submit_contact_via_email() {
+            let email = atob('c3RldmUuc255ZGVyQG50ZXNzaW1hbC5jb20');
+            let subject = document.getElementById("contact_name").value;
+            let message = document.getElementById("message").value;
+
+            let mailto_str = 'mailto:' + email + '?subject=' + subject +'&body=' + message;
+            window.open(mailto_str);
+        }
+
+        /// @function submit_contact_via_bot
+        function submit_contact_via_bot() {
+            let name = document.getElementById("contact_name").value;
+            let email = document.getElementById("contact_email").value;
+            let phone = document.getElementById("contact_phone").value;
+            let message = document.getElementById("message").value;
+
+            // Input validation.
+            if (name.length == 0) {
+                alert("Your name cannot be blank.");
+                return;
+            }
+            if (email.length == 0) {
+                alert("Your email cannot be blank.");
+                return;
+            }
+            if (!is_valid_email(email)) {
+                alert("The email address is invalid.");
+                return;
+            }
+            if (phone.length == 0) {
+                alert("Your phone number cannot be blank.");
+                return;
+            }
+
+            // Package all the data into a dictionary.
+            var values = {}
+            values["name"] = name
+            values["email"] = email
+            values["phone"] = phone
+            values["message"] = message
+
+            // Send.
+            let api_url = "https://ntessimal.tech/api/1.0/submit_contact_info";
+//            var api_url = "http://localhost:5252/1.0/submit_contact_info";
+            send_post_request_async(api_url, values, "application/json; charset=utf-8", function(status, response) {
+                if (status == 200) {
+                    alert("Your information was submitted. We'll be in touch soon!");
+                    location.reload();
+                }
+                else {
+                    alert("There was an error processing the request! Someone will look into it, but please send us an email in the meantime!");
+                    submit_contact_via_email();
+                }
+            });
+        }
+        
         $(function (){
             $(".navdiv").load("nav.html");
             $(".footerdiv").load("footer.html");
