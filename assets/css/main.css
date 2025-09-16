@@ -2,6 +2,8 @@
 
 html {
     overflow-x: hidden;
+    --companyblue: #1E407C;
+    --background: #000C1E;
 }
 
 body {
@@ -280,7 +282,7 @@ a.back-to-top:hover, a.back-to-top:focus {
 
 .navbar {
     padding: 100;
-    background: #1C1C20;
+    background: var(--background);
 }
 
 .navbar {
@@ -324,7 +326,7 @@ a.back-to-top:hover, a.back-to-top:focus {
 }
 
 .hero-area-bg2 {
-    background: #1E407C;
+    background: var(--companyblue);
 }
 
 #hero-area {
@@ -428,7 +430,7 @@ input:focus {
 /* Small screens (mobile) */
 @media (width <= 512px) {
     #hero-area .contents .head-title {
-        color: #1E407C;
+        color: var(--companyblue);
         font-size: 48px;
         letter-spacing: 7px;
         font-weight: 700;
@@ -438,7 +440,7 @@ input:focus {
 /* Larger screens (larger mobile) */
 @media (width > 512px) and (width <= 768px) {
     #hero-area .contents .head-title {
-        color: #1E407C;
+        color: var(--companyblue);
         font-size: 84px;
         letter-spacing: 7px;
         font-weight: 700;
@@ -448,7 +450,7 @@ input:focus {
 /* Larger screens (large mobile and small desktop) */
 @media (width > 768px) and (width <= 1024px) {
     #hero-area .contents .head-title {
-        color: #1E407C;
+        color: var(--companyblue);
         font-size: 84px;
         letter-spacing: 7px;
         font-weight: 700;
@@ -458,7 +460,7 @@ input:focus {
 /* Larger screens (very large mobile and desktop) */
 @media (width > 1024px) {
     #hero-area .contents .head-title {
-        color: #1E407C;
+        color: var(--companyblue);
         font-size: 96px;
         letter-spacing: 7px;
         font-weight: 700;
@@ -573,7 +575,7 @@ input:focus {
 }
 
 .footer-area {
-    background: #1C1C20;
+    background: var(--background);
 }
 
 .footer-area .footer-text p {
@@ -583,7 +585,7 @@ input:focus {
 }
 
 .footer-area .footer-text p a {
-    color: #001e44;
+    color: var(--background);
 }
 
 .footer-area .footer-text .nav-inline .nav-link {
@@ -592,7 +594,7 @@ input:focus {
 }
 
 .footer-area .footer-text .nav-inline .nav-link:hover {
-    color: #001e44;
+    color: var(--background);
 }
 
 .row div {
@@ -600,7 +602,7 @@ input:focus {
 }
 
 .copyright {
-    background: #1C1C20;
+    background: var(--background);
 }
 
 .copyright p {
