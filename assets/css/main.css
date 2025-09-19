@@ -682,7 +682,7 @@ input:focus {
     cursor: pointer;
     font-weight: 400;
     color: white;
-    background: #1C1C20;
+    background: transparent;
     display: inline-block;
 }
 
