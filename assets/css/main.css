@@ -567,11 +567,31 @@ input:focus {
 }
 
 .divider-area {
-    background: #1C1C20;
+    background: var(--background);
 }
 
 .news {
-    background: #F0F0F0;
+    background: var(--background);
+}
+
+#news-container {
+    background: var(--background);
+    height: 50px;
+    padding: 10px;
+    font-size: 18px;
+    font-family: "Krungthep";
+    overflow: hidden;
+    position: relative;
+}
+
+.news-item {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.visible {
+    opacity: 1;
 }
 
 .footer-area {

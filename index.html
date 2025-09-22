@@ -57,6 +57,26 @@
     </section>
     <!-- Divider Area Start -->
 
+    <!-- News Area Start -->
+    <div id="news-container">
+        <div class="news-item visible">Welcome to our website!</div>
+        <div class="news-item">Breaking News!</div>
+        <div class="news-item">Stay tuned for daily updates!</div>
+        <div class="news-item">Subscribe to our newsletter!</div>
+    </div>
+
+    <script>
+        const items = document.querySelectorAll('.news-item');
+        let currentIndex = 0;
+
+        setInterval(() => {
+            items[currentIndex].classList.remove('visible');
+            currentIndex = (currentIndex + 1) % items.length;
+            items[currentIndex].classList.add('visible');
+        }, 3000); // rotate every 3 seconds
+    </script>
+    <!-- News Area End -->
+
     <!-- Services Section Start -->
     <section id="services" class="services section-padding">
         <div class="container">
