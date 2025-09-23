@@ -576,7 +576,7 @@ input:focus {
 
 #news-container {
     background: var(--background);
-    height: 50px;
+    height: 128px;
     padding: 10px;
     font-size: 18px;
     font-family: "Krungthep";
@@ -585,6 +585,22 @@ input:focus {
 }
 
 .news-item {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+#applications-container {
+    background: var(--background);
+    height: 256px;
+    padding: 10px;
+    font-size: 18px;
+    font-family: "Krungthep";
+    overflow: hidden;
+    position: relative;
+}
+
+.applications-item {
     position: absolute;
     opacity: 0;
     transition: opacity 0.5s ease-in-out;

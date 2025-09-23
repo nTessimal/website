@@ -64,63 +64,14 @@
         <div class="news-item">Stay tuned for daily updates!</div>
         <div class="news-item">Subscribe to our newsletter!</div>
     </div>
-
-    <script>
-        const items = document.querySelectorAll('.news-item');
-        let currentIndex = 0;
-
-        setInterval(() => {
-            items[currentIndex].classList.remove('visible');
-            currentIndex = (currentIndex + 1) % items.length;
-            items[currentIndex].classList.add('visible');
-        }, 3000); // rotate every 3 seconds
-    </script>
     <!-- News Area End -->
 
-    <!-- Services Section Start -->
-    <section id="services" class="services section-padding">
-        <div class="container">
-        <div class="row" style="justify-content: center">
-            <!-- Services item -->
-            <div class="col-md-6 col-lg-3 col-xs-12">
-                <div class="services-item wow fadeInDown" data-wow-delay="0.3s">
-                    <div class="icon">
-                        <iconify-icon icon="tabler:server"></iconify-icon>
-                    </div>
-                    <div class="services-content">
-                        <h3><a href="#">Compute</a></h3>
-                        <p>3D Logic<br>Compute Near/In Memory<br>uTopology 3DHI</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Services item -->
-            <div class="col-md-6 col-lg-3 col-xs-12">
-                <div class="services-item wow fadeInDown" data-wow-delay="0.34s">
-                    <div class="icon">
-                        <iconify-icon icon="game-icons:prism"></iconify-icon>
-                    </div>
-                    <div class="services-content">
-                        <h3><a href="#">Photonics/Sensing</a></h3>
-                        <p>Plasmonic Particle Assembly<br>Multiferroic Nanowire Assembly<br>Piezoelectric Nanowire Assembly</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Services item -->
-            <div class="col-md-6 col-lg-3 col-xs-12">
-                <div class="services-item wow fadeInDown" data-wow-delay="0.4s">
-                    <div class="icon">
-                        <iconify-icon icon="carbon:microscope"></iconify-icon>
-                    </div>
-                    <div class="services-content">
-                        <h3><a href="#">Biomedical</a></h3>
-                        <p>Lab-on-a-Chip<br>Microscale Cell<br>Separation<br> </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-    </section>
-    <!-- Services Section End -->
+    <!-- Applications Area Start -->
+    <div id="applications-container">
+        <div class="applications-item visible">Gap Fill!</div>
+        <div class="applications-item">VIA Fill!</div>
+    </div>
+    <!-- Applications Area End -->
 
     <!-- Footer Section Start -->
     <footer class="footer-area section-padding">
@@ -155,6 +106,48 @@
     <script src="assets/js/iconify-icon.min.js"></script>
 
     <script>
+        /// @function Sends an HTTP GET request and triggers the callback when the response is received.
+        function send_get_request_async(url, callback) {
+            let xml_http = new XMLHttpRequest();
+            let content_type = "application/json; charset=utf-8";
+
+            xml_http.open("GET", url, true);
+            xml_http.setRequestHeader('Content-Type', content_type);
+            xml_http.onreadystatechange = function() {
+                if (xml_http.readyState == XMLHttpRequest.DONE) {
+                    callback(xml_http.status, xml_http.responseText);
+                }
+            }
+            xml_http.send();
+        }
+
+        let api_url = "https://ntessimal.tech/api/1.0/news";
+        send_get_request_async(api_url, function (response_code, response_text) {
+            if (response_code == 200) {
+                const json_obj = JSON.parse(response_text);
+            }
+            else {
+            }
+        });
+
+        const news_items = document.querySelectorAll('.news-item');
+        const applications_items = document.querySelectorAll('.applications-item');
+
+        let news_index = 0;
+        let applications_index = 0;
+
+        setInterval(() => {
+            news_items[news_index].classList.remove('visible');
+            news_index = (news_index + 1) % news_items.length;
+            news_items[news_index].classList.add('visible');
+        }, 3000); // rotate every 3 seconds
+
+        setInterval(() => {
+            applications_items[applications_index].classList.remove('visible');
+            applications_index = (applications_index + 1) % applications_items.length;
+            applications_items[applications_index].classList.add('visible');
+        }, 5000); // rotate every 5 seconds
+
         $(function (){
             $(".navdiv").load("nav.html");
             $(".footerdiv").load("footer.html");
