@@ -53,23 +53,33 @@
     <!-- Hero Area End -->
 
     <!-- Divider Area Start -->
-    <section id="divider" class="divider-area section-padding">
+    <section id="divider1" class="divider-area section-padding">
     </section>
     <!-- Divider Area Start -->
 
     <!-- News Area Start -->
     <div id="news-container">
-        <div class="news-item visible">Welcome to our website!</div>
-        <div class="news-item">Breaking News!</div>
-        <div class="news-item">Stay tuned for daily updates!</div>
-        <div class="news-item">Subscribe to our newsletter!</div>
+        <div class="news-item visible">News Item #1!</div>
+        <div class="news-item">News Item #2!</div>
+        <div class="news-item">News Item #3!</div>
     </div>
     <!-- News Area End -->
 
+    <!-- Divider Area Start -->
+    <section id="divider2" class="divider-area section-padding">
+    </section>
+    <!-- Divider Area Start -->
+
     <!-- Applications Area Start -->
     <div id="applications-container">
-        <div class="applications-item visible">Gap Fill!</div>
-        <div class="applications-item">VIA Fill!</div>
+        <div class="applications-item visible">
+            <span class="text">We can do Gap Fill!</span>
+            <img src="assets/img/gapfill.webp" alt="Gap Fill">
+        </div>
+        <div class="applications-item">
+            <span class="text">We can do High Aspect Ratio VIA Fill!</span>
+            <img src="assets/img/viafill.webp" alt="VIA Fill">
+        </div>
     </div>
     <!-- Applications Area End -->
 
@@ -106,6 +116,61 @@
     <script src="assets/js/iconify-icon.min.js"></script>
 
     <script>
+        let VISITOR_COOKIE_NAME = "visitor";
+
+        /// @function get_browser_name
+        function get_browser_name() {
+            const userAgent = navigator.userAgent;
+
+            if (userAgent.includes("Firefox")) {
+                return "Firefox";
+            } else if (userAgent.includes("Edg")) {
+                return "Microsoft Edge";
+            } else if (userAgent.includes("OPR") || userAgent.includes("Opera")) {
+                return "Opera";
+            } else if (userAgent.includes("Chrome")) {
+                return "Chrome";
+            } else if (userAgent.includes("Safari")) {
+                return "Safari";
+            } else {
+                return "Unknown";
+            }
+        }
+
+        /// @function generate_random_hex_string
+        function generate_random_hex_string(num_bytes) {
+            const bytes = crypto.getRandomValues(new Uint8Array(num_bytes));
+            const hexPairs = Array.from(bytes).map(b => b.toString(16).padStart(2, '0'));
+            return hexPairs.join('');
+        }
+
+        /// @function get_cookie
+        function get_cookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ')
+                    c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0)
+                    return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        /// @function set_cookie
+        function set_cookie(name, value, days) {
+            var expires = "";
+
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+        }
+
         /// @function Sends an HTTP GET request and triggers the callback when the response is received.
         function send_get_request_async(url, callback) {
             let xml_http = new XMLHttpRequest();
@@ -121,14 +186,23 @@
             xml_http.send();
         }
 
+        // Get the latest news items.
         let api_url = "https://ntessimal.tech/api/1.0/news";
         send_get_request_async(api_url, function (response_code, response_text) {
             if (response_code == 200) {
                 const json_obj = JSON.parse(response_text);
             }
             else {
+                console.log("Failed to fetch the latest news!");
             }
         });
+
+        // Visitor tracking. Set a cookie.
+        let cookie = get_cookie(VISITOR_COOKIE_NAME);
+        if (cookie == null) {
+            let visitor_id = generate_random_hex_string(512);
+            set_cookie(VISITOR_COOKIE_NAME, visitor_id, 90);
+        }
 
         const news_items = document.querySelectorAll('.news-item');
         const applications_items = document.querySelectorAll('.applications-item');

@@ -570,40 +570,51 @@ input:focus {
     background: var(--background);
 }
 
-.news {
-    background: var(--background);
-}
-
 #news-container {
-    background: var(--background);
-    height: 128px;
-    padding: 10px;
-    font-size: 18px;
-    font-family: "Krungthep";
+    background: url(../img/news.webp) no-repeat;
+    background-size: cover;
+    height: 256px;
+    width: 100%;
     overflow: hidden;
     position: relative;
+    font-size: 18px;
+    font-family: "Krungthep";
+}
+
+.news-item img {
+    width: 100%;
+    justify-content: center;  /* horizontal center */
+    align-items: center;      /* vertical center */
+    transition: opacity 1.0s ease-in-out;
 }
 
 .news-item {
+    background: transparent;
     position: absolute;
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
 }
 
 #applications-container {
     background: var(--background);
     height: 256px;
-    padding: 10px;
-    font-size: 18px;
-    font-family: "Krungthep";
+    width: 100%;
     overflow: hidden;
     position: relative;
+    font-size: 18px;
+    font-family: "Krungthep";
 }
 
-.applications-item {
+.applications-item img {
+    width: 100%;
+    justify-content: center;  /* horizontal center */
+    align-items: center;      /* vertical center */
+    transition: opacity 1.0s ease-in-out;
+}
+
+.applications-item .text {
+    background: transparent;
     position: absolute;
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
 }
 
 .visible {
