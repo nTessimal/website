@@ -186,9 +186,25 @@
             xml_http.send();
         }
 
+        /// @function Sends an HTTP POST request and triggers the callback when the response is received.
+        function send_post_request_async(url, params, callback) {
+            let xml_http = new XMLHttpRequest();
+            let content_type = "application/json; charset=utf-8";
+
+            xml_http.open("POST", url, false);
+            xml_http.setRequestHeader('Content-Type', content_type);
+            xml_http.onreadystatechange = function() {
+                if (xml_http.readyState == XMLHttpRequest.DONE) {
+                    callback(xml_http.status, xml_http.responseText);
+                }
+            }
+            json_data = JSON.stringify(params);
+            xml_http.send(json_data);
+        }
+
         // Get the latest news items.
-        let api_url = "https://ntessimal.tech/api/1.0/news";
-        send_get_request_async(api_url, function (response_code, response_text) {
+        let news_api_url = "https://ntessimal.tech/api/1.0/news";
+        send_get_request_async(news_api_url, function (response_code, response_text) {
             if (response_code == 200) {
                 const json_obj = JSON.parse(response_text);
             }
@@ -198,11 +214,20 @@
         });
 
         // Visitor tracking. Set a cookie.
-        let cookie = get_cookie(VISITOR_COOKIE_NAME);
-        if (cookie == null) {
-            let visitor_id = generate_random_hex_string(512);
+        var visitor_id = get_cookie(VISITOR_COOKIE_NAME);
+        if (visitor_id == null) {
+            visitor_id = generate_random_hex_string(512);
             set_cookie(VISITOR_COOKIE_NAME, visitor_id, 90);
         }
+
+        // Report browser usage stats.
+        let browser_str = get_browser_name();
+        let visitor_api_url = "https://ntessimal.tech/api/1.0/log_unique_visitor";
+        let visitor_stats = {}
+        visitor_stats["visitor_id"] = visitor_id
+        visitor_stats["browser_str"] = browser_str
+        send_post_request_async(visitor_api_url, visitor_stats, function (response_code, response_text) {
+        })
 
         const news_items = document.querySelectorAll('.news-item');
         const applications_items = document.querySelectorAll('.applications-item');
