@@ -581,6 +581,8 @@ input:focus {
     position: relative;
     font-size: 24px;
     font-family: "Krungthep";
+    color: white;
+    opacity: 0.95;
     text-align: center;
     vertical-align: middle;
     display: grid;
@@ -734,11 +736,11 @@ input:focus {
 
 .dropdown-btn {
     font-size: 14px;
+    font-weight: 400;
     padding: 8px 4px;
     border-radius: 0px;
     border: 0px;
     cursor: pointer;
-    font-weight: 400;
     color: white;
     background: transparent;
     display: inline-block;

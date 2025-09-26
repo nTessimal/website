@@ -176,6 +176,11 @@
             document.cookie = name + "=" + (value || "")  + expires + "; path=/";
         }
 
+        function removeTrailingHashtags(text) {
+            return text.replace(/\s*#[a-zA-Z0-9_]+$/g, '')  // remove the last hashtag
+                        .replace(/(\s*#[a-zA-Z0-9_]+)+$/, ''); // remove any remaining trailing hashtags
+        }
+
         /// @function Sends an HTTP GET request and triggers the callback when the response is received.
         function send_get_request_async(url, callback) {
             let xml_http = new XMLHttpRequest();
@@ -216,9 +221,8 @@
                 var news_index = 0;
                 
                 news_obj.slice(-3).forEach(news_item => {
-                    console.log(news_item);
                     let elem = news_items[news_index];
-                    elem.innerHTML = news_item["text"];
+                    elem.innerHTML = news_item["date"] + "<br><br>" + removeTrailingHashtags(news_item["text"]);
                     news_index += 1;
                 });
             }
