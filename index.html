@@ -117,6 +117,11 @@
 
     <script>
         let VISITOR_COOKIE_NAME = "visitor";
+        let NEWS_API_URL = "https://ntessimal.tech/bot/api/1.0/news";
+        let VISITOR_API_URL = "https://ntessimal.tech/bot/api/1.0/log_unique_visitor";
+
+        const news_items = document.querySelectorAll('.news-item');
+        const applications_items = document.querySelectorAll('.applications-item');
 
         /// @function get_browser_name
         function get_browser_name() {
@@ -182,7 +187,7 @@
                 if (xml_http.readyState == XMLHttpRequest.DONE) {
                     callback(xml_http.status, xml_http.responseText);
                 }
-            }
+            };
             xml_http.send();
         }
 
@@ -197,16 +202,25 @@
                 if (xml_http.readyState == XMLHttpRequest.DONE) {
                     callback(xml_http.status, xml_http.responseText);
                 }
-            }
+            };
+            xml_http.onerror = function () {
+            };
             json_data = JSON.stringify(params);
             xml_http.send(json_data);
         }
 
         // Get the latest news items.
-        let news_api_url = "https://ntessimal.tech/bot/api/1.0/news";
-        send_get_request_async(news_api_url, function (response_code, response_text) {
+        send_get_request_async(NEWS_API_URL, function (response_code, response_text) {
             if (response_code == 200) {
-                const json_obj = JSON.parse(response_text);
+                const news_obj = JSON.parse(response_text);
+                var news_index = 0;
+                
+                news_obj.slice(-3).forEach(news_item => {
+                    console.log(news_item);
+                    let elem = news_items[news_index];
+                    elem.innerHTML = news_item["text"];
+                    news_index += 1;
+                });
             }
             else {
                 console.log("Failed to fetch the latest news!");
@@ -220,18 +234,6 @@
             set_cookie(VISITOR_COOKIE_NAME, visitor_id, 90);
         }
 
-        // Report browser usage stats.
-        let browser_str = get_browser_name();
-        let visitor_api_url = "https://ntessimal.tech/bot/api/1.0/log_unique_visitor";
-        let visitor_stats = {}
-        visitor_stats["visitor_id"] = visitor_id
-        visitor_stats["browser_str"] = browser_str
-        send_post_request_async(visitor_api_url, visitor_stats, function (response_code, response_text) {
-        })
-
-        const news_items = document.querySelectorAll('.news-item');
-        const applications_items = document.querySelectorAll('.applications-item');
-
         let news_index = 0;
         let applications_index = 0;
 
@@ -239,13 +241,21 @@
             news_items[news_index].classList.remove('visible');
             news_index = (news_index + 1) % news_items.length;
             news_items[news_index].classList.add('visible');
-        }, 3000); // rotate every 3 seconds
+        }, 5000); // rotate every 5 seconds
 
         setInterval(() => {
             applications_items[applications_index].classList.remove('visible');
             applications_index = (applications_index + 1) % applications_items.length;
             applications_items[applications_index].classList.add('visible');
-        }, 5000); // rotate every 5 seconds
+        }, 7000); // rotate every 7 seconds
+
+        // Report browser usage stats.
+        let browser_str = get_browser_name();
+        let visitor_stats = {}
+        visitor_stats["visitor_id"] = visitor_id
+        visitor_stats["browser_str"] = browser_str
+        //send_post_request_async(VISITOR_API_URL, visitor_stats, function (response_code, response_text) {
+        //});
 
         $(function (){
             $(".navdiv").load("nav.html");
