@@ -132,7 +132,7 @@
             values["message"] = message
 
             // Send.
-            let api_url = "https://ntessimal.tech/api/1.0/submit_contact_info";
+            let api_url = "https://ntessimal.tech/bot/api/1.0/submit_contact_info";
             send_post_request_async(api_url, values, "application/json; charset=utf-8", function(status, response) {
                 if (status == 200) {
                     alert("Your information was submitted. We'll be in touch soon!");
