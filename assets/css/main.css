@@ -625,15 +625,31 @@ input:focus {
     z-index: 1;
 }
 
-.applications-item span.text {
+.applications-item span.title {
     background: transparent;
     position: absolute;
-    top: 10px;  /* adjust as needed */
-    left: 10px; /* adjust as needed */
+    top: 24px;
+    left: 10px;
     width: 100%;
     font-size: 48px;
     font-family: "Krungthep";
     color: white;
+    text-align: center;
+    vertical-align: middle;
+    opacity: 0.95;
+    padding: 5px;
+    z-index: 2; /* ensures it’s in front of the image */
+}
+
+.applications-item span.body {
+    background: transparent;
+    position: absolute;
+    top: 100px;
+    left: 10px;
+    width: 100%;
+    font-size: 24px;
+    font-family: "Krungthep";
+    color: rgba(255, 255, 255, 0.7);
     text-align: center;
     vertical-align: middle;
     opacity: 0.95;
