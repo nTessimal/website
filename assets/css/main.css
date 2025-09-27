@@ -622,12 +622,23 @@ input:focus {
     justify-content: center;  /* horizontal center */
     align-items: center;      /* vertical center */
     transition: opacity 1.0s ease-in-out;
+    z-index: 1;
 }
 
-.applications-item .text {
+.applications-item span.text {
     background: transparent;
     position: absolute;
-    opacity: 0;
+    top: 10px;  /* adjust as needed */
+    left: 10px; /* adjust as needed */
+    width: 100%;
+    font-size: 48px;
+    font-family: "Krungthep";
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    opacity: 0.95;
+    padding: 5px;
+    z-index: 2; /* ensures it’s in front of the image */
 }
 
 .visible {

@@ -72,13 +72,13 @@
 
     <!-- Applications Area Start -->
     <div id="applications-container">
-        <div class="applications-item visible">
-            <span class="text">We can do Gap Fill!</span>
+        <div class="applications-item">
             <img src="assets/img/gapfill.webp" alt="Gap Fill">
+            <span class="text">We can do Gap Fill!</span>
         </div>
         <div class="applications-item">
-            <span class="text">We can do High Aspect Ratio VIA Fill!</span>
             <img src="assets/img/viafill.webp" alt="VIA Fill">
+            <span class="text">We can do High Aspect Ratio VIA Fill!</span>
         </div>
     </div>
     <!-- Applications Area End -->
@@ -122,6 +122,9 @@
 
         const news_items = document.querySelectorAll('.news-item');
         const applications_items = document.querySelectorAll('.applications-item');
+
+        let news_index = 0;
+        let applications_index = 0;
 
         /// @function get_browser_name
         function get_browser_name() {
@@ -176,11 +179,13 @@
             document.cookie = name + "=" + (value || "")  + expires + "; path=/";
         }
 
+        /// @function remove_trailing_hashtags
         function remove_trailing_hashtags(text) {
             return text.replace(/\s*#[a-zA-Z0-9_]+$/g, '') // remove the last hashtag
                     .replace(/(\s*#[a-zA-Z0-9_]+)+$/, ''); // remove any remaining trailing hashtags
         }
 
+        /// @function format_date
         function format_date(isoString) {
             const date = new Date(isoString);
             const options = { day: '2-digit', month: 'long', year: 'numeric' };
@@ -220,6 +225,30 @@
             xml_http.send(json_data);
         }
 
+        /// @function rotate_news_item
+        function rotate_news_item() {
+            news_items[news_index].classList.remove('visible');
+            news_index = (news_index + 1) % news_items.length;
+            news_items[news_index].classList.add('visible');
+        }
+
+        /// @function rotate_application_item
+        function rotate_application_item() {
+            // Hide the old item.
+            applications_items[applications_index].hidden = false;
+            for (const child of applications_items[applications_index].children) {
+                child.hidden = false;
+            }
+
+            applications_index = (applications_index + 1) % applications_items.length;
+
+            // Show the new item.
+            applications_items[applications_index].hidden = true;
+            for (const child of applications_items[applications_index].children) {
+                child.hidden = true;
+            }
+        }
+
         // Get the latest news items.
         send_get_request_async(NEWS_API_URL, function (response_code, response_text) {
             if (response_code == 200) {
@@ -244,20 +273,12 @@
             set_cookie(VISITOR_COOKIE_NAME, visitor_id, 90);
         }
 
-        let news_index = 0;
-        let applications_index = 0;
+        // Rotate the news items.
+        setInterval(() => { rotate_news_item(); }, 5000); // rotate every 5 seconds
 
-        setInterval(() => {
-            news_items[news_index].classList.remove('visible');
-            news_index = (news_index + 1) % news_items.length;
-            news_items[news_index].classList.add('visible');
-        }, 5000); // rotate every 5 seconds
-
-        setInterval(() => {
-            applications_items[applications_index].classList.remove('visible');
-            applications_index = (applications_index + 1) % applications_items.length;
-            applications_items[applications_index].classList.add('visible');
-        }, 7000); // rotate every 7 seconds
+        // Rotate the application items.
+        rotate_application_item();
+        setInterval(() => { rotate_application_item(); }, 7000); // rotate every 7 seconds
 
         // Report browser usage stats.
         let browser_str = get_browser_name();
