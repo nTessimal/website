@@ -58,7 +58,7 @@
     <!-- Divider Area Start -->
 
     <!-- News Area Start -->
-    <div id="news-container">
+    <div id="news-container" onclick="pause_news()">
         <div class="news-item visible">News Item #1!</div>
         <div class="news-item">News Item #2!</div>
         <div class="news-item">News Item #3!</div>
@@ -71,7 +71,7 @@
     <!-- Divider Area Start -->
 
     <!-- Applications Area Start -->
-    <div id="applications-container">
+    <div id="applications-container" onclick="pause_applications()">
         <div class="applications-item">
             <img src="assets/img/gapfill.webp" alt="Gap Fill">
             <span class="title">Gap Fill</span>
@@ -127,6 +127,18 @@
 
         let news_index = 0;
         let applications_index = 0;
+        let news_paused = false;
+        let applications_paused = false;
+
+        /// @function pause_news
+        function pause_news() {
+            news_paused = !news_paused;
+        }
+
+        /// @function pause_applications
+        function pause_applications() {
+            applications_paused = !applications_paused;
+        }
 
         /// @function get_browser_name
         function get_browser_name() {
@@ -229,25 +241,29 @@
 
         /// @function rotate_news_item
         function rotate_news_item() {
-            news_items[news_index].classList.remove('visible');
-            news_index = (news_index + 1) % news_items.length;
-            news_items[news_index].classList.add('visible');
+            if (!news_paused) {
+                news_items[news_index].classList.remove('visible');
+                news_index = (news_index + 1) % news_items.length;
+                news_items[news_index].classList.add('visible');
+            }
         }
 
         /// @function rotate_application_item
         function rotate_application_item() {
-            // Hide the old item.
-            applications_items[applications_index].hidden = false;
-            for (const child of applications_items[applications_index].children) {
-                child.hidden = false;
-            }
+            if (!applications_paused) {
+                // Hide the old item.
+                applications_items[applications_index].hidden = false;
+                for (const child of applications_items[applications_index].children) {
+                    child.hidden = false;
+                }
 
-            applications_index = (applications_index + 1) % applications_items.length;
+                applications_index = (applications_index + 1) % applications_items.length;
 
-            // Show the new item.
-            applications_items[applications_index].hidden = true;
-            for (const child of applications_items[applications_index].children) {
-                child.hidden = true;
+                // Show the new item.
+                applications_items[applications_index].hidden = true;
+                for (const child of applications_items[applications_index].children) {
+                    child.hidden = true;
+                }
             }
         }
 
