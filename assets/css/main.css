@@ -600,6 +600,7 @@ input:focus {
     background: transparent;
     position: absolute;
     opacity: 0;
+    padding: 32px;
 }
 
 #applications-container {
@@ -644,6 +645,7 @@ input:focus {
 .applications-item span.body {
     background: transparent;
     position: absolute;
+    padding: 32px;
     top: 128px;
     left: 10px;
     width: 100%;
