@@ -568,6 +568,7 @@ input:focus {
 
 .divider-area {
     background: var(--background);
+    text-align: center;
 }
 
 #news-container {
@@ -661,6 +662,26 @@ input:focus {
 
 .visible {
     opacity: 1;
+}
+
+#dots-container {
+    text-align: center;
+    margin-top: 10px;
+    z-index: 3; /* ensures it’s in front of the image */
+}
+
+.dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.dot.active {
+    background-color: #333;
 }
 
 .footer-area {
