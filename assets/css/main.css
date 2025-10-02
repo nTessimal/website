@@ -576,7 +576,7 @@ input:focus {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    height: 256px;
+    height: 384px;
     width: 100%;
     overflow: hidden;
     position: relative;
@@ -620,6 +620,7 @@ input:focus {
 }
 
 .applications-item img {
+    display: block;
     width: 100%;
     justify-content: center;  /* horizontal center */
     align-items: center;      /* vertical center */
