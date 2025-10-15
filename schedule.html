@@ -17,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="assets/fonts/simple-line-icons.css">
     <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.5/main.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css">
 </head>
 
 <body>
@@ -98,9 +98,11 @@
     <script src="assets/js/main.js"></script>
     <script src="assets/js/iconify-icon.min.js"></script>
     <script src="assets/js/common.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.5/main.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.46/moment-timezone.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/rrule@2.8.1/dist/es5/rrule.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/rrule@6.1.15/index.global.min.js"></script>
 
     <script>
         var g_meeting_start = null;
@@ -183,16 +185,19 @@
             lines.forEach((line) => {
 
                 // Ignore empty lines
-                if (line.trim() === '') return;
+                if (line.trim() === '') {
+                    return;
+                }
 
-                // Detect start of an event
+                // Detect the start of an event.
                 if (line.startsWith('BEGIN:VEVENT')) {
                     currentEvent = {};
                     isInsideEvent = true;
                     return;
                 }
 
-                // Detect end of an event
+                // Detect the end of an event.
+                // Add it to the list of fullcalendar events.
                 if (line.startsWith('END:VEVENT')) {
                     json.events.push(currentEvent);
                     currentEvent = null;
@@ -200,7 +205,7 @@
                     return;
                 }
 
-                // Parse general key-value pairs
+                // Parse general key-value pairs.
                 const [key, ...valueParts] = line.split(':');
                 const value = valueParts.join(':').trim();
 
