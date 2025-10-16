@@ -155,7 +155,7 @@
         function show_schedule_dlg(starttime, endtime) {
             g_meeting_start = starttime;
             var paragraph_elem = document.getElementById('schedule_dlg_intro');
-            paragraph_elem.innerHTML = "Tell us a little about yourself and we'll be in touch on " + unix_time_to_local_string(g_meeting_start) + " (" + unix_time_to_utc_string(g_meeting_start) + ")";
+            paragraph_elem.innerHTML = "Tell us a little about yourself and we'll be in touch on " + unix_time_to_local_date_string(g_meeting_start) + "!";
             schedule_dlg.showModal();
         }
 
