@@ -17,7 +17,6 @@
     <link rel="stylesheet" type="text/css" href="assets/fonts/simple-line-icons.css">
     <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css">
 </head>
 
 <body>
@@ -168,23 +167,42 @@
             return event_obj;
         }
 
-        /// @function ical_to_json
+        function is_date_only(v){ return /^\d{8}$/.test(v); }
+
+        /// @function parse_ical_date
+        function parse_ical_date(val) {
+            if (is_date_only(val)) {
+                // YYYYMMDD → YYYY-MM-DD (all-day format)
+                return `${val.slice(0,4)}-${val.slice(4,6)}-${val.slice(6,8)}`;
+            }
+
+            // Match date-time like 20250106T100000Z
+            const match = /^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})(Z)?$/.exec(val);
+            if (!match) {
+                return val; // fallback: return as-is
+            }
+
+            const Y = match[1], M = match[2], D = match[3], h = match[4], m = match[5], s = match[6], Z = match[7];
+            return `${Y}-${M}-${D}T${h}:${m}:${s}${Z ? 'Z' : ''}`;
+        }
+
+        /// @function ical_str_to_json
         /// Converts an iCal string to a JSON object.
         /// @param {string} ical_str - The iCal formatted string.
         /// @returns {Object} JSON representation of the iCal data.
-        function ical_to_json(ical_str) {
+        function ical_str_to_json(ical_str) {
             const lines = ical_str.split(/\r?\n/); // Split into lines
             const json = {};
 
             let currentKey = null;
             let currentEvent = null;
-            let isInsideEvent = false;
+            let currentlyProcessingAnEvent = false;
 
             json.events = [];
 
             lines.forEach((line) => {
 
-                // Ignore empty lines
+                // Ignore empty lines.
                 if (line.trim() === '') {
                     return;
                 }
@@ -192,16 +210,16 @@
                 // Detect the start of an event.
                 if (line.startsWith('BEGIN:VEVENT')) {
                     currentEvent = {};
-                    isInsideEvent = true;
+                    currentlyProcessingAnEvent = true;
                     return;
                 }
 
                 // Detect the end of an event.
                 // Add it to the list of fullcalendar events.
-                if (line.startsWith('END:VEVENT')) {
+                if (line.startsWith('END:VEVENT') && currentEvent !== null) {
                     json.events.push(currentEvent);
                     currentEvent = null;
-                    isInsideEvent = false;
+                    currentlyProcessingAnEvent = false;
                     return;
                 }
 
@@ -209,7 +227,7 @@
                 const [key, ...valueParts] = line.split(':');
                 const value = valueParts.join(':').trim();
 
-                if (isInsideEvent && currentEvent !== null) {
+                if (currentlyProcessingAnEvent && currentEvent !== null) {
 
                     // Handle multi-line values (e.g., DESCRIPTION with line breaks)
                     if (key.startsWith(' ')) {
@@ -219,23 +237,32 @@
                         currentEvent[currentKey] = value;
                     }
                 } else {
-                    json[key.trim()] = value; // Global properties outside events
+                    //json[key.trim()] = value; // Global properties outside events
                 }
             });
 
             return json;
         }
 
-        /// @function ical_ts_to_fullcal_ts
-        function ical_ts_to_fullcal_ts(key, value) {
-            let parts = key.split(';');
-            var ts = value;
+        /// @function extract_fullcal_data
+        /// Looks through all the data that was pulled from the iCal event and copies items that are needed to a fullcal event.
+        /// @param {dict} event - The iCal dictionary.
+        function extract_fullcal_data(event) {
+            var fulcal_event = {};
 
-            let subparts = parts[1].split('=');
-            if (subparts[0] == "TZID") {
-                ts += moment().tz(subparts[1]).format('Z');
+            fulcal_event['title'] = event['SUMMARY'];
+            for (const [key, value] of Object.entries(event)) {
+                if (key.startsWith('DTSTART;')) {
+                    fulcal_event['start'] = fulcal_event['end'] =  parse_ical_date(value);
+                }
+                else if (key.startsWith('DTEND;')) {
+                    fulcal_event['end'] = parse_ical_date(value);
+                }
+                else if (key.startsWith('RRULE')) {
+                    fulcal_event['rrule'] = value;
+                }
             }
-            return ts;
+            return fulcal_event
         }
 
         /// @function draw_calendar
@@ -254,27 +281,10 @@
 
                             send_get_request_async(ical_url, "text/calendar", function (response_code, response_text) {
                                 if (response_code == 200) {
-                                    let events = ical_to_json(response_text);
-
+                                    let events = ical_str_to_json(response_text);
                                     successCallback(
                                         events.events.map(function(event) {
-                                            var start_time = "";
-                                            var end_time = "";
-
-                                            for (const [key, value] of Object.entries(event)) {
-                                                if (key.startsWith('DTSTART;')) {
-                                                    start_time = ical_ts_to_fullcal_ts(key, value);
-                                                }
-                                                else if (key.startsWith('DTEND;')) {
-                                                    end_time = ical_ts_to_fullcal_ts(key, value);
-                                                }
-                                            }
-
-                                            return {
-                                                title: event['SUMMARY'],
-                                                start: start_time,
-                                                end: end_time
-                                            }
+                                            return extract_fullcal_data(event);
                                         })
                                     );
                                 }
