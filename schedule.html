@@ -107,6 +107,7 @@
         var g_meeting_start = null;
 
         /// @function send_contact
+        /// Posts contact information to the bot, who will, in turn update the calendar and post to Slack.
         function send_contact() {
             let name_elem = document.getElementById("contact_name");
             let organization_elem = document.getElementById("contact_organization");
@@ -152,6 +153,7 @@
         }
 
         /// @function show_schedule_dlg
+        /// This is the dialog used to request a meetup.
         function show_schedule_dlg(starttime, endtime) {
             g_meeting_start = starttime;
             var paragraph_elem = document.getElementById('schedule_dlg_intro');
@@ -167,7 +169,10 @@
             return event_obj;
         }
 
-        function is_date_only(v){ return /^\d{8}$/.test(v); }
+        /// @function is_date_only
+        function is_date_only(v) {
+            return /^\d{8}$/.test(v);
+        }
 
         /// @function parse_ical_date
         function parse_ical_date(val) {
@@ -253,7 +258,10 @@
             fulcal_event['title'] = event['SUMMARY'];
             for (const [key, value] of Object.entries(event)) {
                 if (key.startsWith('DTSTART;')) {
-                    fulcal_event['start'] = fulcal_event['end'] =  parse_ical_date(value);
+                    fulcal_event['start'] = parse_ical_date(value);
+                    if (!('end' in fulcal_event)) {
+                        fulcal_event['end'] = fulcal_event['start']
+                    }
                 }
                 else if (key.startsWith('DTEND;')) {
                     fulcal_event['end'] = parse_ical_date(value);
@@ -267,10 +275,10 @@
 
         /// @function draw_calendar
         function draw_calendar() {
-            var calendarEl = document.getElementById('calendar');
+            var calendar_element = document.getElementById('calendar');
 
             // Initialize the FullCalendar
-            var calendar = new FullCalendar.Calendar(calendarEl, {
+            var calendar = new FullCalendar.Calendar(calendar_element, {
                 headerToolbar: { center: 'dayGridMonth,dayGridWeek' },
                 navLinks: true, // can click day/week names to navigate views
                 editable: false, // is read-only
