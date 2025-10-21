@@ -254,22 +254,22 @@
         /// @param {dict} event - The iCal dictionary.
         function extract_fullcal_data(event) {
             var fulcal_event = {};
+            var dt_start = "";
 
-            fulcal_event['title'] = event['SUMMARY'];
             for (const [key, value] of Object.entries(event)) {
                 if (key.startsWith('DTSTART;')) {
                     fulcal_event['start'] = parse_ical_date(value);
-                    if (!('end' in fulcal_event)) {
-                        fulcal_event['end'] = fulcal_event['start']
-                    }
+                    dt_start = value;
                 }
                 else if (key.startsWith('DTEND;')) {
                     fulcal_event['end'] = parse_ical_date(value);
                 }
                 else if (key.startsWith('RRULE')) {
-                    fulcal_event['rrule'] = value;
+                    fulcal_event['rrule'] = value + ";DTSTART=" + dt_start;
                 }
             }
+            fulcal_event['title'] = event['SUMMARY'];
+            console.log(fulcal_event);
             return fulcal_event
         }
 
