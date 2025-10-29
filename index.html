@@ -59,9 +59,9 @@
 
     <!-- News Area Start -->
     <div id="news-container" onclick="pause_news()">
-        <div class="news-item visible">News Item #1!</div>
-        <div class="news-item">News Item #2!</div>
-        <div class="news-item">News Item #3!</div>
+        <div class="news-item"></div>
+        <div class="news-item" hidden></div>
+        <div class="news-item" hidden></div>
     </div>
     <!-- News Area End -->
 
@@ -126,7 +126,8 @@
 
     <script>
         let VISITOR_COOKIE_NAME = "visitor";
-        let NEWS_API_URL = "https://ntessimal.tech/bot/api/1.0/news";
+        let NEWS_API_URL = "http://localhost:5252/api/1.0/news";
+        //let NEWS_API_URL = "https://ntessimal.tech/bot/api/1.0/news";
         let VISITOR_API_URL = "https://ntessimal.tech/bot/api/1.0/log_unique_visitor";
 
         const news_items = document.querySelectorAll('.news-item');
@@ -251,10 +252,10 @@
         /// @function rotate_news_item
         function rotate_news_item() {
             if (!news_paused) {
-                news_items[news_index].classList.remove('visible');
+                news_items[news_index].setAttribute('hidden', 'hidden');
                 news_dots[news_index].classList.remove('active');
                 news_index = (news_index + 1) % news_items.length;
-                news_items[news_index].classList.add('visible');
+                news_items[news_index].removeAttribute('hidden');
                 news_dots[news_index].classList.add('active');
             }
         }
@@ -287,8 +288,7 @@
                 var news_index = 0;
                 
                 news_obj.slice(-3).forEach(news_item => {
-                    let elem = news_items[news_index];
-                    elem.innerHTML = format_date(news_item["date"]) + "<br><br>" + remove_trailing_hashtags(news_item["text"]);
+                    news_items[news_index].innerHTML = format_date(news_item["date"]) + "<br><br>" + remove_trailing_hashtags(news_item["text"]) + "<br><br><a href=\"" + news_item['link'] + "\">View on LinkedIn</a>";
                     news_index += 1;
                 });
             }

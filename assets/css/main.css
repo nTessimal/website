@@ -600,8 +600,12 @@ input:focus {
 .news-item {
     background: transparent;
     position: absolute;
-    opacity: 0;
     padding: 32px;
+}
+
+.news-item a {
+    font-size: 16px;
+    opacity: 80%;
 }
 
 #applications-container {
@@ -659,10 +663,6 @@ input:focus {
     opacity: 0.95;
     padding: 5px;
     z-index: 2; /* ensures it’s in front of the image */
-}
-
-.visible {
-    opacity: 1;
 }
 
 #dots-container {
