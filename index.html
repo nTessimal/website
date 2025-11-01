@@ -286,9 +286,9 @@
             if (response_code == 200) {
                 const news_obj = JSON.parse(response_text);
                 var news_index = 0;
-                
+
                 news_obj.slice(-3).forEach(news_item => {
-                    news_items[news_index].innerHTML = format_date(news_item["date"]) + "<br><br>" + remove_trailing_hashtags(news_item["text"]) + "<br><br><a href=\"" + news_item['link'] + "\">View on LinkedIn</a>";
+                    news_items[news_index].innerHTML = format_date(news_item["date"]) + "<br><br><a href=\"" + news_item['link'] + "\">" + remove_trailing_hashtags(news_item["text"]) + "</a>";
                     news_index += 1;
                 });
             }
