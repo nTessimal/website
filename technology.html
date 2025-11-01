@@ -111,6 +111,14 @@ At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praese
     <script src="assets/js/iconify-icon.min.js"></script>
 
     <script>
+        // Fade effect.
+        document.body.classList.add('fade');
+        document.addEventListener("DOMContentLoaded", () => {
+            window.setTimeout(function() {
+                document.body.className = '';
+            }, 230);
+        });
+
         $(function (){
             $(".navdiv").load("nav.html");
             $(".footerdiv").load("footer.html");

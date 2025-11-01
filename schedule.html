@@ -104,6 +104,14 @@
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/rrule@6.1.15/index.global.min.js"></script>
 
     <script>
+        // Fade effect.
+        document.body.classList.add('fade');
+        document.addEventListener("DOMContentLoaded", () => {
+            window.setTimeout(function() {
+                document.body.className = '';
+            }, 230);
+        });
+
         var g_meeting_start = null;
 
         /// @function send_contact
