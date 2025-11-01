@@ -20,6 +20,13 @@ body {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     overflow-x: hidden;
+    opacity: 1;
+    transition-duration: 0.7s;
+    transition-property: opacity;
+}
+
+body.fade {
+    opacity: 0;
 }
 
 h1, h2, h3, h4 {
@@ -142,6 +149,7 @@ button:focus {
 
 .social-icon li a:hover {
     color: white;
+    box-shadow: 0 0 20px 12px rgb(255, 255, 255, 0.8);
 }
 
 .social-icon li .facebook:hover {
@@ -502,7 +510,7 @@ input:focus {
 }
 
 .services-item:hover {
-    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 20px 12px rgb(255, 255, 255, 0.8);
 }
 
 .btn.disabled, .btn:disabled {
