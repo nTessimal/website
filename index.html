@@ -183,10 +183,12 @@
 
             for (var i = 0; i < ca.length; i++) {
                 var c = ca[i];
-                while (c.charAt(0) == ' ')
+                while (c.charAt(0) == ' ') {
                     c = c.substring(1, c.length);
-                if (c.indexOf(nameEQ) == 0)
+                }
+                if (c.indexOf(nameEQ) == 0) {
                     return c.substring(nameEQ.length, c.length);
+                }
             }
             return null;
         }
@@ -260,24 +262,30 @@
             }
         }
 
+        /// @function hide_application_item
+        function hide_application_item(i) {
+            applications_items[i].hidden = false;
+            apps_dots[i].classList.remove('active');
+            for (const child of applications_items[i].children) {
+                child.hidden = false;
+            }
+        }
+
+        /// @function show_application_item
+        function show_application_item(i) {
+            applications_items[i].hidden = true;
+            apps_dots[i].classList.add('active');
+            for (const child of applications_items[i].children) {
+                child.hidden = true;
+            }
+        }
+
         /// @function rotate_application_item
         function rotate_application_item() {
             if (!applications_paused) {
-                // Hide the old item.
-                applications_items[applications_index].hidden = false;
-                apps_dots[applications_index].classList.remove('active');
-                for (const child of applications_items[applications_index].children) {
-                    child.hidden = false;
-                }
-
+                hide_application_item(applications_index);
                 applications_index = (applications_index + 1) % applications_items.length;
-
-                // Show the new item.
-                applications_items[applications_index].hidden = true;
-                apps_dots[applications_index].classList.add('active');
-                for (const child of applications_items[applications_index].children) {
-                    child.hidden = true;
-                }
+                show_application_item(applications_index);
             }
         }
 
@@ -304,16 +312,31 @@
             set_cookie(VISITOR_COOKIE_NAME, visitor_id, 90);
         }
 
-        // Create dots based on number of items
+        // Create dots based on number of news items.
         news_items.forEach((_, i) => {
             const dot = document.createElement('span');
             dot.classList.add('dot');
+
             if (i === 0) dot.classList.add('active');
             news_dots_container.appendChild(dot);
         });
+
+        // Create dots based on number of application area items.
         applications_items.forEach((_, i) => {
             const dot = document.createElement('span');
             dot.classList.add('dot');
+            dot.onclick = function() {
+                hide_application_item(applications_index);
+                applications_index = i;
+                show_application_item(applications_index);
+            };
+            dot.addEventListener('mouseover', function () {
+                dot.style.cursor = 'pointer';
+            });
+            dot.addEventListener('mouseout', function () {
+                dot.style.cursor = 'default';
+            });
+
             if (i === 0) dot.classList.add('active');
             apps_dots_container.appendChild(dot);
         });
