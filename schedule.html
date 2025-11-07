@@ -32,11 +32,19 @@
     <dialog id="schedule_dlg" class="dialog">
         <form action="javascript:void(0);">
             <p id="schedule_dlg_intro">words go here</p>
-            Name: <br><input type="text" name="name" id="contact_name" value=""><br>
-            Organization: <br><input type="text" name="organization" id="contact_organization" value=""><br>
-            Email: <br><input type="text" name="email" id="contact_email" value=""><br>
-            Phone: <br><input type="text" name="phone" id="contact_phone" value=""><br>
-            Notes: <br><textarea name="message" cols="30" id="contact_notes"></textarea>
+            Time: <br>
+            <select name="schedule_time" id="schedule_time">
+            </select><br>
+            Name: <br>
+            <input type="text" name="name" id="contact_name" value=""><br>
+            Organization: <br>
+            <input type="text" name="organization" id="contact_organization" value=""><br>
+            Email: <br>
+            <input type="text" name="email" id="contact_email" value=""><br>
+            Phone: <br>
+            <input type="text" name="phone" id="contact_phone" value=""><br>
+            Notes: <br>
+            <textarea name="message" cols="30" id="contact_notes"></textarea>
             <div>
                 <button type="button" onclick="javascript:schedule_dlg.close()">Cancel</button>
                 <button type="submit" onclick="javascript:send_contact()">Schedule</button>
@@ -117,6 +125,7 @@
         /// @function send_contact
         /// Posts contact information to the bot, who will, in turn update the calendar and post to Slack.
         function send_contact() {
+            let time_elem = document.getElementById("schedule_time");
             let name_elem = document.getElementById("contact_name");
             let organization_elem = document.getElementById("contact_organization");
             let email_elem = document.getElementById("contact_email");
@@ -148,7 +157,8 @@
             values["email"] = email_elem.value
             values["phone"] = phone_elem.value
             values["notes"] = notes_elem.value
-            values["time"] = g_meeting_start
+            values["date"] = g_meeting_start
+            values["time"] = time_elem.value
 
             // Send.
             let api_url = "https://ntessimal.tech/bot/api/1.0/submit_meeting_request";
@@ -164,7 +174,22 @@
         /// This is the dialog used to request a meetup.
         function show_schedule_dlg(starttime, endtime) {
             g_meeting_start = starttime;
+
             var paragraph_elem = document.getElementById('schedule_dlg_intro');
+            var time_combo_elem = document.getElementById('schedule_time');
+            var current = starttime;
+
+            while (current < endtime) {
+                let time_str = unix_time_to_string(current);
+
+                const option = document.createElement("option");
+                option.text = time_str;
+                option.value = time_str
+                time_combo_elem.add(option);
+
+                current += 30 * 60 * 1000;
+            }
+
             paragraph_elem.innerHTML = "Tell us a little about yourself and we'll be in touch on " + unix_time_to_local_date_string(g_meeting_start) + "!";
             schedule_dlg.showModal();
         }
@@ -173,6 +198,7 @@
         function process_activity_obj(event_obj) {
             var start_date_obj = moment(event_obj.start, "YYYYMMDDThhmmss");
             var end_date_obj = moment(event_obj.end, "YYYYMMDDThhmmss");
+
             event_obj.url = "javascript:show_schedule_dlg(" + start_date_obj + "," + end_date_obj + ");";
             return event_obj;
         }

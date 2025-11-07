@@ -15,6 +15,12 @@ function unix_time_to_local_date_string(unix_time) {
     return date.toLocaleString().split(',')[0];
 }
 
+/// @function unix_time_to_string
+function unix_time_to_string(unix_time) {
+    let date = new Date(unix_time);
+    return date.toLocaleString().split(',')[1].trim();
+}
+
 /// @function unix_time_to_utc_string
 function unix_time_to_utc_string(unix_time) {
     let date = new Date(unix_time);
