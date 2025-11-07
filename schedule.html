@@ -161,6 +161,7 @@
             values["time"] = time_elem.value
 
             // Send.
+//            let api_url = "http://localhost:5252/api/1.0/submit_meeting_request";
             let api_url = "https://ntessimal.tech/bot/api/1.0/submit_meeting_request";
             send_post_request_async(api_url, values, "application/json; charset=utf-8", function(status, response) {
                 if (status == 200)
@@ -194,8 +195,8 @@
             schedule_dlg.showModal();
         }
 
-        /// @function process_activity_obj
-        function process_activity_obj(event_obj) {
+        /// @function process_calendar_obj
+        function process_calendar_obj(event_obj) {
             var start_date_obj = moment(event_obj.start, "YYYYMMDDThhmmss");
             var end_date_obj = moment(event_obj.end, "YYYYMMDDThhmmss");
 
@@ -335,7 +336,7 @@
                         },
                     }
                 ],
-                eventDataTransform: process_activity_obj,
+                eventDataTransform: process_calendar_obj,
             });
 
             // Render the calendar
