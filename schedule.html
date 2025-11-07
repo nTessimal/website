@@ -120,7 +120,7 @@
             }, 230);
         });
 
-        var g_meeting_start = null;
+        var g_meeting_date = null;
 
         /// @function send_contact
         /// Posts contact information to the bot, who will, in turn update the calendar and post to Slack.
@@ -157,7 +157,7 @@
             values["email"] = email_elem.value
             values["phone"] = phone_elem.value
             values["notes"] = notes_elem.value
-            values["date"] = g_meeting_start
+            values["date"] = g_meeting_date
             values["time"] = time_elem.value
 
             // Send.
@@ -189,7 +189,7 @@
                 current += 30 * 60 * 1000;
             }
 
-            paragraph_elem.innerHTML = "Tell us a little about yourself and we'll be in touch on " + unix_time_to_local_date_string(g_meeting_start) + "!";
+            paragraph_elem.innerHTML = "Tell us a little about yourself and we'll be in touch on " + unix_time_to_local_date_string(g_meeting_date) + "!";
             schedule_dlg.showModal();
         }
 
@@ -333,8 +333,7 @@
                     return event_obj;
                 },
                 eventClick: function(info) {
-                    g_meeting_start = unix_time_to_local_string(info.event.start);
-                    console.log("Clicked!", info.event);
+                    g_meeting_date = info.event.start.getTime();
                 }
             });
 
