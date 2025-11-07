@@ -174,8 +174,6 @@
         /// @function show_schedule_dlg
         /// This is the dialog used to request a meetup.
         function show_schedule_dlg(starttime, endtime) {
-            g_meeting_start = starttime;
-
             var paragraph_elem = document.getElementById('schedule_dlg_intro');
             var time_combo_elem = document.getElementById('schedule_time');
             var current = starttime;
@@ -193,15 +191,6 @@
 
             paragraph_elem.innerHTML = "Tell us a little about yourself and we'll be in touch on " + unix_time_to_local_date_string(g_meeting_start) + "!";
             schedule_dlg.showModal();
-        }
-
-        /// @function process_calendar_obj
-        function process_calendar_obj(event_obj) {
-            var start_date_obj = moment(event_obj.start, "YYYYMMDDThhmmss");
-            var end_date_obj = moment(event_obj.end, "YYYYMMDDThhmmss");
-
-            event_obj.url = "javascript:show_schedule_dlg(" + start_date_obj + "," + end_date_obj + ");";
-            return event_obj;
         }
 
         /// @function is_date_only
@@ -336,7 +325,17 @@
                         },
                     }
                 ],
-                eventDataTransform: process_calendar_obj,
+                eventDataTransform: function(event_obj) {
+                    var start_date_obj = moment(event_obj.start, "YYYYMMDDThhmmss");
+                    var end_date_obj = moment(event_obj.end, "YYYYMMDDThhmmss");
+
+                    event_obj.url = "javascript:show_schedule_dlg(" + start_date_obj + "," + end_date_obj + ");";
+                    return event_obj;
+                },
+                eventClick: function(info) {
+                    g_meeting_start = unix_time_to_local_string(info.event.start);
+                    console.log("Clicked!", info.event);
+                }
             });
 
             // Render the calendar
