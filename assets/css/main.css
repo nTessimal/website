@@ -465,6 +465,18 @@ input:focus {
     color: #ddd;
 }
 
+#hero-area .tech-list ul {
+    font-weight: 400;
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 32px;
+    text-transform: none;
+    text-align: center;
+    margin: 0px;
+    padding: 10px;
+    color: white;
+    line-height: 30px;
+}
+
 .services {
     background: #F0F0F0;
 }
