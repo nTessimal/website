@@ -581,7 +581,7 @@ input:focus {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    height: 384px;
+    height: 768px;
     width: 100%;
     overflow: hidden;
     position: relative;
@@ -633,6 +633,18 @@ input:focus {
     opacity: 0.95;
     padding: 5px;
     z-index: 2; /* ensures it’s in front of the image */
+}
+
+.applications-item-diagram img {
+    object-fit: contain;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    max-height: 512px;
+    justify-content: center;  /* horizontal center */
+    align-items: center;      /* vertical center */
+    z-index: 2;
 }
 
 #dots-container {
