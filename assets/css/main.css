@@ -558,6 +558,12 @@ input:focus {
     place-items: center;
 }
 
+@media (width <= 768px) {
+#news-container {
+    height: 512px;
+}
+}
+
 .news-item img {
     width: 100%;
     justify-content: center;  /* horizontal center */
