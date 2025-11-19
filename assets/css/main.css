@@ -596,16 +596,7 @@ input:focus {
     vertical-align: middle;
 }
 
-.applications-item img {
-    display: block;
-    width: 100%;
-    justify-content: center;  /* horizontal center */
-    align-items: center;      /* vertical center */
-    transition: opacity 1.0s ease-in-out;
-    z-index: 1;
-}
-
-.applications-item span.title {
+.applications-item p.title {
     font-size: 38px;
     font-weight: 500;
     font-family: "Krungthep";
@@ -623,21 +614,30 @@ input:focus {
     z-index: 2; /* ensures it’s in front of the image */
 }
 
-.applications-item span.body {
+.applications-item p.body {
+    font-size: 24px;
+    font-family: "New Times Roman";
+    text-align: center;
+    vertical-align: middle;
     background: transparent;
     position: absolute;
     padding: 32px;
     top: 128px;
     left: 10px;
     width: 100%;
-    font-size: 24px;
-    font-family: "New Times Roman";
     color: rgba(255, 255, 255, 0.7);
-    text-align: center;
-    vertical-align: middle;
     opacity: 0.95;
     padding: 5px;
     z-index: 2; /* ensures it’s in front of the image */
+}
+
+.applications-item img {
+    display: block;
+    width: 100%;
+    justify-content: center; /* horizontal center */
+    align-items: center;     /* vertical center */
+    transition: opacity 1.0s ease-in-out;
+    z-index: 2;
 }
 
 .applications-item-diagram img {
@@ -647,8 +647,7 @@ input:focus {
     left: 25%;
     width: 50%;
     max-height: 512px;
-    justify-content: center;  /* horizontal center */
-    z-index: 2;
+    justify-content: center; /* horizontal center */
 }
 
 @media (width <= 768px) {
