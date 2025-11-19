@@ -532,7 +532,7 @@ input:focus {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    height: 384px;
+    height: 512px;
     width: 100%;
     overflow: hidden;
     position: relative;
