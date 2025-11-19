@@ -633,21 +633,16 @@ input:focus {
 
 .applications-item img {
     display: block;
-    width: 100%;
     justify-content: center; /* horizontal center */
     align-items: center;     /* vertical center */
     transition: opacity 1.0s ease-in-out;
-    z-index: 2;
-}
-
-.applications-item-diagram img {
     object-fit: contain;
     position: absolute;
     top: 25%;
     left: 25%;
     width: 50%;
     max-height: 512px;
-    justify-content: center; /* horizontal center */
+    z-index: 2;
 }
 
 @media (width <= 1300px) {
