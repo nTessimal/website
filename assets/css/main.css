@@ -644,6 +644,12 @@ input:focus {
 }
 }
 
+@media (width <= 768px) {
+.applications-item-deterministic-assembly img {
+    width: 70%;
+}
+}
+
 #dots-container {
     text-align: center;
     margin-top: 10px;
