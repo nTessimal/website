@@ -268,6 +268,13 @@ button:focus {
     background-size: cover;
 }
 
+/* Small screens (mobile) */
+@media (width <= 1024px) {
+.hero-area-bg {
+    height: 900px;
+}
+}
+
 .hero-area-bg2 {
     background: var(--companyblue);
 }
