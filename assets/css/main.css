@@ -628,6 +628,15 @@ input:focus {
     margin-top: 50px;
 }
 
+@media (width <= 768px) {
+.applications-item-gap-fill img {
+    width: 60%;
+}
+.applications-item-deterministic-assembly img {
+    width: 80%;
+}
+}
+
 #dots-container {
     text-align: center;
     margin-top: 10px;
