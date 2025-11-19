@@ -644,9 +644,9 @@ input:focus {
 }
 }
 
-@media (width <= 768px) {
+@media (width <= 512px) {
 .applications-item-deterministic-assembly img {
-    width: 70%;
+    width: 65%;
 }
 }
 
