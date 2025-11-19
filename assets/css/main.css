@@ -152,18 +152,6 @@ button:focus {
     box-shadow: 0 0 20px 12px rgb(255, 255, 255, 0.8);
 }
 
-.social-icon li .facebook:hover {
-    background: #3b5999;
-}
-
-.social-icon li .twitter:hover {
-    background: #4A9CEC;
-}
-
-.social-icon li .instagram:hover {
-    background: #D6274D;
-}
-
 .social-icon li .linkedin:hover {
     background: #1260A2;
 }
@@ -583,77 +571,61 @@ input:focus {
 }
 
 #applications-container {
-    background: var(--background);
+    background: url(../img/background1.webp) no-repeat;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    height: 768px;
     width: 100%;
     overflow: hidden;
     position: relative;
-    font-size: 24px;
+    font-size: 36px;
     font-family: "New Times Roman";
-    text-align: center;
-    vertical-align: middle;
-}
-
-.applications-item p.title {
-    font-size: 38px;
-    font-weight: 500;
-    font-family: "Krungthep";
-    text-shadow: -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff, 1px 1px 0 #ffffff;
-    text-align: center;
-    vertical-align: middle;
-    background: transparent;
-    position: absolute;
-    top: 48px;
-    left: 10px;
-    width: 100%;
     color: white;
     opacity: 0.95;
-    padding: 5px;
-    z-index: 2; /* ensures it’s in front of the image */
-}
-
-.applications-item p.body {
-    font-size: 24px;
-    font-family: "New Times Roman";
     text-align: center;
     vertical-align: middle;
+    display: grid;
+    place-items: center;
+}
+
+@media (width <= 768px) {
+#applications-container {
+    height: 512px;
+}
+}
+
+.applications-item {
     background: transparent;
     position: absolute;
     padding: 32px;
-    top: 128px;
-    left: 10px;
-    width: 100%;
-    color: rgba(255, 255, 255, 0.7);
-    opacity: 0.95;
-    padding: 5px;
-    z-index: 2; /* ensures it’s in front of the image */
+}
+
+.applications-item p {
+    font-size: 24px;
+    opacity: 80%;
 }
 
 .applications-item img {
     display: block;
+    margin-left: auto;
+    margin-right: auto;
     justify-content: center; /* horizontal center */
     align-items: center;     /* vertical center */
     transition: opacity 1.0s ease-in-out;
     object-fit: contain;
-    position: absolute;
-    top: 25%;
-    left: 25%;
+    position: relative;
     width: 50%;
     max-height: 512px;
     z-index: 2;
 }
 
-@media (width <= 1300px) {
-.applications-item-diagram img {
-    top: 40%;
+.applications-item-gap-fill img {
+    margin-top: 10px;
 }
-}
-@media (width <= 800px) {
-.applications-item-diagram img {
-    top: 60%;
-}
+
+.applications-item-deterministic-assembly img {
+    margin-top: 50px;
 }
 
 #dots-container {
