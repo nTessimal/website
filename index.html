@@ -53,54 +53,48 @@
     <!-- Hero Area End -->
 
     <!-- Divider Area Start -->
-    <section id="divider" class="divider-area section-padding">
+    <section id="divider1" class="divider-area section-padding">
     </section>
     <!-- Divider Area Start -->
 
-    <!-- Services Section Start -->
-    <section id="services" class="services section-padding">
-        <div class="container">
-        <div class="row" style="justify-content: center">
-            <!-- Services item -->
-            <div class="col-md-6 col-lg-3 col-xs-12">
-                <div class="services-item wow fadeInDown" data-wow-delay="0.3s">
-                    <div class="icon">
-                        <iconify-icon icon="tabler:server"></iconify-icon>
-                    </div>
-                    <div class="services-content">
-                        <h3><a href="#">Compute</a></h3>
-                        <p>3D Logic<br>Compute Near/In Memory<br>uTopology 3DHI</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Services item -->
-            <div class="col-md-6 col-lg-3 col-xs-12">
-                <div class="services-item wow fadeInDown" data-wow-delay="0.34s">
-                    <div class="icon">
-                        <iconify-icon icon="game-icons:prism"></iconify-icon>
-                    </div>
-                    <div class="services-content">
-                        <h3><a href="#">Photonics/Sensing</a></h3>
-                        <p>Plasmonic Particle Assembly<br>Multiferroic Nanowire Assembly<br>Piezoelectric Nanowire Assembly</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Services item -->
-            <div class="col-md-6 col-lg-3 col-xs-12">
-                <div class="services-item wow fadeInDown" data-wow-delay="0.4s">
-                    <div class="icon">
-                        <iconify-icon icon="carbon:microscope"></iconify-icon>
-                    </div>
-                    <div class="services-content">
-                        <h3><a href="#">Biomedical</a></h3>
-                        <p>Lab-on-a-Chip<br>Microscale Cell<br>Separation<br> </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
+    <!-- News Area Start -->
+    <div id="news-container" onclick="pause_news()">
+        <div class="news-item"></div>
+        <div class="news-item" hidden></div>
+        <div class="news-item" hidden></div>
+    </div>
+    <!-- News Area End -->
+
+    <!-- Divider Area Start -->
+    <section id="divider2" class="divider-area section-padding">
+        <div id="news-dots-container"></div>
     </section>
-    <!-- Services Section End -->
+    <!-- Divider Area Start -->
+
+    <!-- Applications Area Start -->
+    <div id="applications-container" onclick="pause_applications()">
+        <div class="applications-item applications-item-gap-fill">
+            <h2>Gap Fill</h2>
+            <br>
+            <p>By combining electrophoretic deposition with supercritical drying, ultra-high aspect ratio vias can be filled with a wide array of non-plateable materials.</p>
+            <br>
+            <img src="assets/img/high-aspect-via-fill.webp" alt="Gap Fill">
+        </div>
+        <div class="applications-item applications-item-deterministic-assembly" hidden>
+            <h2>Deterministic Assembly</h2>
+            <br>
+            <p>By combining electrophoretic forces, dielectrophoretic forces, and supercritical drying nanoparticles can be deterministically assembled across a full wafer simultaneously.</p>
+            <br>
+            <img src="assets/img/deterministic-assembly.webp" alt="Deterministic Assembly">
+        </div>
+    </div>
+    <!-- Applications Area End -->
+
+    <!-- Divider Area Start -->
+    <section id="divider3" class="divider-area section-padding">
+        <div id="apps-dots-container"></div>
+    </section>
+    <!-- Divider Area Start -->
 
     <!-- Footer Section Start -->
     <footer class="footer-area section-padding">
@@ -135,6 +129,261 @@
     <script src="assets/js/iconify-icon.min.js"></script>
 
     <script>
+        let VISITOR_COOKIE_NAME = "visitor";
+        //let NEWS_API_URL = "http://localhost:5252/api/1.0/news";
+        let NEWS_API_URL = "https://ntessimal.tech/bot/api/1.0/news";
+        let VISITOR_API_URL = "https://ntessimal.tech/bot/api/1.0/log_unique_visitor";
+
+        const news_items = document.querySelectorAll('.news-item');
+        const news_dots_container = document.getElementById('news-dots-container');
+        const applications_items = document.querySelectorAll('.applications-item');
+        const apps_dots_container = document.getElementById('apps-dots-container');
+
+        let news_index = 0;
+        let applications_index = 0;
+        let news_paused = false;
+        let applications_paused = false;
+
+        /// @function pause_news
+        function pause_news() {
+            news_paused = !news_paused;
+        }
+
+        /// @function pause_applications
+        function pause_applications() {
+            applications_paused = !applications_paused;
+        }
+
+        /// @function get_browser_name
+        function get_browser_name() {
+            const userAgent = navigator.userAgent;
+
+            if (userAgent.includes("Firefox")) {
+                return "Firefox";
+            } else if (userAgent.includes("Edg")) {
+                return "Microsoft Edge";
+            } else if (userAgent.includes("OPR") || userAgent.includes("Opera")) {
+                return "Opera";
+            } else if (userAgent.includes("Chrome")) {
+                return "Chrome";
+            } else if (userAgent.includes("Safari")) {
+                return "Safari";
+            } else {
+                return "Unknown";
+            }
+        }
+
+        /// @function generate_random_hex_string
+        function generate_random_hex_string(num_bytes) {
+            const bytes = crypto.getRandomValues(new Uint8Array(num_bytes));
+            const hexPairs = Array.from(bytes).map(b => b.toString(16).padStart(2, '0'));
+            return hexPairs.join('');
+        }
+
+        /// @function get_cookie
+        function get_cookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1, c.length);
+                }
+                if (c.indexOf(nameEQ) == 0) {
+                    return c.substring(nameEQ.length, c.length);
+                }
+            }
+            return null;
+        }
+
+        /// @function set_cookie
+        function set_cookie(name, value, days) {
+            var expires = "";
+
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+        }
+
+        /// @function remove_trailing_hashtags
+        function remove_trailing_hashtags(text) {
+            return text.replace(/\s*#[a-zA-Z0-9_]+$/g, '') // remove the last hashtag
+                    .replace(/(\s*#[a-zA-Z0-9_]+)+$/, ''); // remove any remaining trailing hashtags
+        }
+
+        /// @function format_date
+        function format_date(isoString) {
+            const date = new Date(isoString);
+            const options = { day: '2-digit', month: 'long', year: 'numeric' };
+            return new Intl.DateTimeFormat('en-GB', options).format(date);
+        }
+
+        /// @function Sends an HTTP GET request and triggers the callback when the response is received.
+        function send_get_request_async(url, callback) {
+            let xml_http = new XMLHttpRequest();
+            let content_type = "application/json; charset=utf-8";
+
+            xml_http.open("GET", url, true);
+            xml_http.setRequestHeader('Content-Type', content_type);
+            xml_http.onreadystatechange = function() {
+                if (xml_http.readyState == XMLHttpRequest.DONE) {
+                    callback(xml_http.status, xml_http.responseText);
+                }
+            };
+            xml_http.send();
+        }
+
+        /// @function Sends an HTTP POST request and triggers the callback when the response is received.
+        function send_post_request_async(url, params, callback) {
+            let xml_http = new XMLHttpRequest();
+            let content_type = "application/json; charset=utf-8";
+
+            xml_http.open("POST", url, false);
+            xml_http.setRequestHeader('Content-Type', content_type);
+            xml_http.onreadystatechange = function() {
+                if (xml_http.readyState == XMLHttpRequest.DONE) {
+                    callback(xml_http.status, xml_http.responseText);
+                }
+            };
+            xml_http.onerror = function () {
+            };
+            json_data = JSON.stringify(params);
+            xml_http.send(json_data);
+        }
+
+        /// @function hide_news_item
+        function hide_news_item(i) {
+            news_items[i].setAttribute('hidden', 'hidden');
+            news_dots[i].classList.remove('active');
+        }
+
+        /// @function show_news_item
+        function show_news_item(i) {
+            news_items[i].removeAttribute('hidden');
+            news_dots[i].classList.add('active');
+        }
+
+        /// @function rotate_news_item
+        function rotate_news_item() {
+            if (!news_paused) {
+                hide_news_item(news_index);
+                news_index = (news_index + 1) % news_items.length;
+                show_news_item(news_index);
+            }
+        }
+
+        /// @function hide_application_item
+        function hide_application_item(i) {
+            applications_items[i].hidden = false;
+            apps_dots[i].classList.remove('active');
+            for (const child of applications_items[i].children) {
+                child.hidden = false;
+            }
+        }
+
+        /// @function show_application_item
+        function show_application_item(i) {
+            applications_items[i].hidden = true;
+            apps_dots[i].classList.add('active');
+            for (const child of applications_items[i].children) {
+                child.hidden = true;
+            }
+        }
+
+        /// @function rotate_application_item
+        function rotate_application_item() {
+            if (!applications_paused) {
+                hide_application_item(applications_index);
+                applications_index = (applications_index + 1) % applications_items.length;
+                show_application_item(applications_index);
+            }
+        }
+
+        // Get the latest news items.
+        send_get_request_async(NEWS_API_URL, function (response_code, response_text) {
+            if (response_code == 200) {
+                const news_obj = JSON.parse(response_text);
+                var news_index = 0;
+
+                news_obj.slice(-3).forEach(news_item => {
+                    news_items[news_index].innerHTML = "<h2>" + format_date(news_item["date"]) + "</h2><br><br><a href=\"" + news_item['link'] + "\">" + remove_trailing_hashtags(news_item["text"]) + "</a>";
+                    news_index += 1;
+                });
+            }
+            else {
+                console.log("Failed to fetch the latest news!");
+            }
+        });
+
+        // Visitor tracking. Set a cookie.
+        var visitor_id = get_cookie(VISITOR_COOKIE_NAME);
+        if (visitor_id == null) {
+            visitor_id = generate_random_hex_string(512);
+            set_cookie(VISITOR_COOKIE_NAME, visitor_id, 90);
+        }
+
+        // Create dots based on number of news items.
+        news_items.forEach((_, i) => {
+            const dot = document.createElement('span');
+            dot.classList.add('dot');
+            dot.onclick = function() {
+                hide_news_item(news_index);
+                news_index = i;
+                show_news_item(news_index);
+            };
+            dot.addEventListener('mouseover', function () {
+                dot.style.cursor = 'pointer';
+            });
+            dot.addEventListener('mouseout', function () {
+                dot.style.cursor = 'default';
+            });
+
+            if (i === 0) dot.classList.add('active');
+            news_dots_container.appendChild(dot);
+        });
+
+        // Create dots based on number of application area items.
+        applications_items.forEach((_, i) => {
+            const dot = document.createElement('span');
+            dot.classList.add('dot');
+            dot.onclick = function() {
+                hide_application_item(applications_index);
+                applications_index = i;
+                show_application_item(applications_index);
+            };
+            dot.addEventListener('mouseover', function () {
+                dot.style.cursor = 'pointer';
+            });
+            dot.addEventListener('mouseout', function () {
+                dot.style.cursor = 'default';
+            });
+
+            if (i === 0) dot.classList.add('active');
+            apps_dots_container.appendChild(dot);
+        });
+
+        const news_dots = news_dots_container.querySelectorAll('.dot');
+        const apps_dots = apps_dots_container.querySelectorAll('.dot');
+
+        // Rotate the news items.
+        setInterval(() => { rotate_news_item(); }, 5000); // rotate every 5 seconds
+
+        // Rotate the application items.
+        rotate_application_item();
+        setInterval(() => { rotate_application_item(); }, 7500); // rotate every 7.5 seconds
+
+        // Report browser usage stats.
+        let browser_str = get_browser_name();
+        let visitor_stats = {}
+        visitor_stats["visitor_id"] = visitor_id
+        visitor_stats["browser_str"] = browser_str
+        //send_post_request_async(VISITOR_API_URL, visitor_stats, function (response_code, response_text) {
+        //});
+
         $(function (){
             $(".navdiv").load("nav.html");
             $(".footerdiv").load("footer.html");

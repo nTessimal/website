@@ -17,7 +17,6 @@
     <link rel="stylesheet" type="text/css" href="assets/fonts/simple-line-icons.css">
     <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.5/main.min.css">
 </head>
 
 <body>
@@ -33,11 +32,19 @@
     <dialog id="schedule_dlg" class="dialog">
         <form action="javascript:void(0);">
             <p id="schedule_dlg_intro">words go here</p>
-            Name: <br><input type="text" name="name" id="contact_name" value=""><br>
-            Organization: <br><input type="text" name="organization" id="contact_organization" value=""><br>
-            Email: <br><input type="text" name="email" id="contact_email" value=""><br>
-            Phone: <br><input type="text" name="phone" id="contact_phone" value=""><br>
-            Notes: <br><textarea name="message" cols="30" id="contact_notes"></textarea>
+            Time: <br>
+            <select name="schedule_time" id="schedule_time">
+            </select><br>
+            Name: <br>
+            <input type="text" name="name" id="contact_name" value=""><br>
+            Organization: <br>
+            <input type="text" name="organization" id="contact_organization" value=""><br>
+            Email: <br>
+            <input type="text" name="email" id="contact_email" value=""><br>
+            Phone: <br>
+            <input type="text" name="phone" id="contact_phone" value=""><br>
+            Notes: <br>
+            <textarea name="message" cols="30" id="contact_notes"></textarea>
             <div>
                 <button type="button" onclick="javascript:schedule_dlg.close()">Cancel</button>
                 <button type="submit" onclick="javascript:send_contact()">Schedule</button>
@@ -48,14 +55,14 @@
 
     <!-- Hero Area Start -->
     <header id="header-wrap">
-        <div id="hero-area" class="hero-area-bg2">
+        <div id="hero-area" class="hero-area-bg">
             <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-12 text-center">
                     <div class="contents">
                         <div class="schedule_header">
                             <h1>Let's Talk...</h1>
-                            <p>Schedule a Meeting To Learn More By Selecting a Time From the Calendar</p>
+                            <p>Schedule a Meeting By Selecting a Time From the Calendar Or By Sending Us an <a href="email.html">Email</a></p>
                         </div>
                         <div id="calendar"></div>
                     </div>
@@ -98,15 +105,27 @@
     <script src="assets/js/main.js"></script>
     <script src="assets/js/iconify-icon.min.js"></script>
     <script src="assets/js/common.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.5/main.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.46/moment-timezone.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/rrule@2.8.1/dist/es5/rrule.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/rrule@6.1.15/index.global.min.js"></script>
 
     <script>
-        var g_meeting_start = null;
+        // Fade effect.
+        document.body.classList.add('fade');
+        document.addEventListener("DOMContentLoaded", () => {
+            window.setTimeout(function() {
+                document.body.className = '';
+            }, 230);
+        });
+
+        var g_meeting_date = null;
 
         /// @function send_contact
+        /// Posts contact information to the bot, who will, in turn update the calendar and post to Slack.
         function send_contact() {
+            let time_elem = document.getElementById("schedule_time");
             let name_elem = document.getElementById("contact_name");
             let organization_elem = document.getElementById("contact_organization");
             let email_elem = document.getElementById("contact_email");
@@ -138,74 +157,109 @@
             values["email"] = email_elem.value
             values["phone"] = phone_elem.value
             values["notes"] = notes_elem.value
-            values["time"] = g_meeting_start
+            values["date"] = g_meeting_date
+            values["time"] = time_elem.value
 
             // Send.
             let api_url = "https://ntessimal.tech/bot/api/1.0/submit_meeting_request";
 //            var api_url = "http://localhost:5252/1.0/submit_meeting_request";
             send_post_request_async(api_url, values, "application/json; charset=utf-8", function(status, response) {
-                if (status == 200)
+                if (status == 200) {
                     alert("Your request was submitted, we'll be in touch soon!");
-                else
+                    schedule_dlg.close();
+                }
+                else {
                     alert("There was an error processing the request! " + response);
+                }
             });
         }
 
         /// @function show_schedule_dlg
+        /// This is the dialog used to request a meetup.
         function show_schedule_dlg(starttime, endtime) {
-            g_meeting_start = starttime;
             var paragraph_elem = document.getElementById('schedule_dlg_intro');
-            paragraph_elem.innerHTML = "Tell us a little about yourself and we'll be in touch on " + unix_time_to_local_string(g_meeting_start) + " (" + unix_time_to_utc_string(g_meeting_start) + ")";
+            var time_combo_elem = document.getElementById('schedule_time');
+            var current = starttime;
+
+            while (current < endtime) {
+                let time_str = unix_time_to_string(current);
+
+                const option = document.createElement("option");
+                option.text = time_str;
+                option.value = time_str
+                time_combo_elem.add(option);
+
+                current += 30 * 60 * 1000;
+            }
+
+            paragraph_elem.innerHTML = "Tell us a little about yourself and we'll be in touch on " + unix_time_to_local_date_string(g_meeting_date) + "!";
             schedule_dlg.showModal();
         }
 
-        /// @function process_activity_obj
-        function process_activity_obj(event_obj) {
-            var start_date_obj = moment(event_obj.start, "YYYYMMDDThhmmss");
-            var end_date_obj = moment(event_obj.end, "YYYYMMDDThhmmss");
-            event_obj.url = "javascript:show_schedule_dlg(" + start_date_obj + "," + end_date_obj + ");";
-            return event_obj;
+        /// @function is_date_only
+        function is_date_only(v) {
+            return /^\d{8}$/.test(v);
         }
 
-        /// @function ical_to_json
+        /// @function parse_ical_date
+        function parse_ical_date(val) {
+            if (is_date_only(val)) {
+                // YYYYMMDD → YYYY-MM-DD (all-day format)
+                return `${val.slice(0,4)}-${val.slice(4,6)}-${val.slice(6,8)}`;
+            }
+
+            // Match date-time like 20250106T100000Z
+            const match = /^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})(Z)?$/.exec(val);
+            if (!match) {
+                return val; // fallback: return as-is
+            }
+
+            const Y = match[1], M = match[2], D = match[3], h = match[4], m = match[5], s = match[6], Z = match[7];
+            return `${Y}-${M}-${D}T${h}:${m}:${s}${Z ? 'Z' : ''}`;
+        }
+
+        /// @function ical_str_to_json
         /// Converts an iCal string to a JSON object.
         /// @param {string} ical_str - The iCal formatted string.
         /// @returns {Object} JSON representation of the iCal data.
-        function ical_to_json(ical_str) {
+        function ical_str_to_json(ical_str) {
             const lines = ical_str.split(/\r?\n/); // Split into lines
             const json = {};
 
             let currentKey = null;
             let currentEvent = null;
-            let isInsideEvent = false;
+            let currentlyProcessingAnEvent = false;
 
             json.events = [];
 
             lines.forEach((line) => {
 
-                // Ignore empty lines
-                if (line.trim() === '') return;
+                // Ignore empty lines.
+                if (line.trim() === '') {
+                    return;
+                }
 
-                // Detect start of an event
+                // Detect the start of an event.
                 if (line.startsWith('BEGIN:VEVENT')) {
                     currentEvent = {};
-                    isInsideEvent = true;
+                    currentlyProcessingAnEvent = true;
                     return;
                 }
 
-                // Detect end of an event
-                if (line.startsWith('END:VEVENT')) {
+                // Detect the end of an event.
+                // Add it to the list of fullcalendar events.
+                if (line.startsWith('END:VEVENT') && currentEvent !== null) {
                     json.events.push(currentEvent);
                     currentEvent = null;
-                    isInsideEvent = false;
+                    currentlyProcessingAnEvent = false;
                     return;
                 }
 
-                // Parse general key-value pairs
+                // Parse general key-value pairs.
                 const [key, ...valueParts] = line.split(':');
                 const value = valueParts.join(':').trim();
 
-                if (isInsideEvent && currentEvent !== null) {
+                if (currentlyProcessingAnEvent && currentEvent !== null) {
 
                     // Handle multi-line values (e.g., DESCRIPTION with line breaks)
                     if (key.startsWith(' ')) {
@@ -214,32 +268,42 @@
                         currentKey = key.trim();
                         currentEvent[currentKey] = value;
                     }
-                } else {
-                    json[key.trim()] = value; // Global properties outside events
                 }
             });
 
             return json;
         }
 
-        /// @function ical_ts_to_fullcal_ts
-        function ical_ts_to_fullcal_ts(key, value) {
-            let parts = key.split(';');
-            var ts = value;
+        /// @function extract_fullcal_data
+        /// Looks through all the data that was pulled from the iCal event and copies items that are needed to a fullcal event.
+        /// @param {dict} event - The iCal dictionary.
+        function extract_fullcal_data(event) {
+            var fulcal_event = {};
+            var dt_start = "";
 
-            let subparts = parts[1].split('=');
-            if (subparts[0] == "TZID") {
-                ts += moment().tz(subparts[1]).format('Z');
+            for (const [key, value] of Object.entries(event)) {
+                if (key.startsWith('DTSTART;')) {
+                    fulcal_event['start'] = parse_ical_date(value);
+                    dt_start = value;
+                }
+                else if (key.startsWith('DTEND;')) {
+                    fulcal_event['end'] = parse_ical_date(value);
+                }
+                else if (key.startsWith('RRULE')) {
+                    fulcal_event['rrule'] = value + ";DTSTART=" + dt_start;
+                }
             }
-            return ts;
+            fulcal_event['title'] = event['SUMMARY'];
+            console.log(fulcal_event);
+            return fulcal_event
         }
 
         /// @function draw_calendar
         function draw_calendar() {
-            var calendarEl = document.getElementById('calendar');
+            var calendar_element = document.getElementById('calendar');
 
             // Initialize the FullCalendar
-            var calendar = new FullCalendar.Calendar(calendarEl, {
+            var calendar = new FullCalendar.Calendar(calendar_element, {
                 headerToolbar: { center: 'dayGridMonth,dayGridWeek' },
                 navLinks: true, // can click day/week names to navigate views
                 editable: false, // is read-only
@@ -250,27 +314,10 @@
 
                             send_get_request_async(ical_url, "text/calendar", function (response_code, response_text) {
                                 if (response_code == 200) {
-                                    let events = ical_to_json(response_text);
-
+                                    let events = ical_str_to_json(response_text);
                                     successCallback(
                                         events.events.map(function(event) {
-                                            var start_time = "";
-                                            var end_time = "";
-
-                                            for (const [key, value] of Object.entries(event)) {
-                                                if (key.startsWith('DTSTART;')) {
-                                                    start_time = ical_ts_to_fullcal_ts(key, value);
-                                                }
-                                                else if (key.startsWith('DTEND;')) {
-                                                    end_time = ical_ts_to_fullcal_ts(key, value);
-                                                }
-                                            }
-
-                                            return {
-                                                title: event['SUMMARY'],
-                                                start: start_time,
-                                                end: end_time
-                                            }
+                                            return extract_fullcal_data(event);
                                         })
                                     );
                                 }
@@ -281,7 +328,16 @@
                         },
                     }
                 ],
-                eventDataTransform: process_activity_obj,
+                eventDataTransform: function(event_obj) {
+                    var start_date_obj = moment(event_obj.start, "YYYYMMDDThhmmss");
+                    var end_date_obj = moment(event_obj.end, "YYYYMMDDThhmmss");
+
+                    event_obj.url = "javascript:show_schedule_dlg(" + start_date_obj + "," + end_date_obj + ");";
+                    return event_obj;
+                },
+                eventClick: function(info) {
+                    g_meeting_date = info.event.start.getTime();
+                }
             });
 
             // Render the calendar
