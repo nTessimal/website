@@ -57,17 +57,26 @@
     </section>
     <!-- Divider Area Start -->
 
-    <!-- News Area Start -->
-    <div id="news-container" onclick="pause_news()">
-        <div class="news-item"></div>
-        <div class="news-item" hidden></div>
-        <div class="news-item" hidden></div>
+    <!-- Chamber Area Start -->
+    <div id="chamber-container">
+        <div id="chamber-area" class="chamber-area-bg">
+            <div class="overlay"></div>
+            <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 text-center">
+                    <div class="contents">
+                        <h3 class="head-title wow fadeInUp" data-wow-delay="0.2s">Redefining microelectronics with nanoparticle integration</h3>
+                        <div class="header-button wow fadeInUp" data-wow-delay="1s"></div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
     </div>
-    <!-- News Area End -->
+    <!-- Chamber Area End -->
 
     <!-- Divider Area Start -->
     <section id="divider2" class="divider-area section-padding">
-        <div id="news-dots-container"></div>
     </section>
     <!-- Divider Area Start -->
 
@@ -92,6 +101,20 @@
 
     <!-- Divider Area Start -->
     <section id="divider3" class="divider-area section-padding">
+        <div id="news-dots-container"></div>
+    </section>
+    <!-- Divider Area Start -->
+
+    <!-- News Area Start -->
+    <div id="news-container" onclick="pause_news()">
+        <div class="news-item"></div>
+        <div class="news-item" hidden></div>
+        <div class="news-item" hidden></div>
+    </div>
+    <!-- News Area End -->
+
+    <!-- Divider Area Start -->
+    <section id="divider4" class="divider-area section-padding">
         <div id="apps-dots-container"></div>
     </section>
     <!-- Divider Area Start -->
@@ -112,7 +135,7 @@
 
     <!-- Copyright Section Start -->
     <section class="copyright">
-        <p class="copyright">Copyright &copy; 2025 nTessimal, LLC</p>
+        <p class="copyright">Copyright &copy; 2026 nTessimal, LLC</p>
     </section>
     <!-- Copyright Section End -->
 
@@ -130,7 +153,6 @@
 
     <script>
         let VISITOR_COOKIE_NAME = "visitor";
-        //let NEWS_API_URL = "http://localhost:5252/api/1.0/news";
         let NEWS_API_URL = "https://ntessimal.tech/bot/api/1.0/news";
         let VISITOR_API_URL = "https://ntessimal.tech/bot/api/1.0/log_unique_visitor";
 

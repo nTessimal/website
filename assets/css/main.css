@@ -266,12 +266,13 @@ button:focus {
     background: url(../img/hero-area.webp) no-repeat;
     background-position: center;
     background-size: cover;
+    height: 1000px;
 }
 
 /* Small screens (mobile) */
 @media (width <= 1024px) {
 .hero-area-bg {
-    height: 900px;
+    height: 850px;
 }
 }
 
@@ -306,6 +307,20 @@ button:focus {
     font-size: 36px;
     color: white;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.chamber-area-bg {
+    background: url(../img/chamber.png) no-repeat;
+    background-position: center;
+    height: 750px;
+    text-align:center
+}
+
+/* Small screens (mobile) */
+@media (width <= 1024px) {
+.chamber-area-bg {
+    height: 650px;
+}
 }
 
 /* Small screens (mobile) */
