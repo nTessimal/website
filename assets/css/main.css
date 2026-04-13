@@ -308,8 +308,9 @@ button:focus {
 }
 
 .chamber-area-bg {
-    background: url(../img/chamber.webp) no-repeat transparent;
-    background-position: center;
+    background: url(../img/chamber.png) no-repeat transparent;
+    background-size: 45%;
+    background-position: center 10%;
     height: 750px;
     display: flex;
     align-items: center;
