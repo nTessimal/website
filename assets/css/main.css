@@ -5,11 +5,11 @@ html {
 }
 
 body {
-    background: white;
+    color: white;
+    background: var(--background);
     font-size: 14px;
     font-weight: 400;
     font-family: 'Inter', sans-serif;
-    color: #666;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -28,7 +28,7 @@ body.fade {
 }
 
 h1, h2, h3, h4 {
-    font-size: 38px;
+    font-size: 2rem;
     font-weight: 500;
     font-family: 'Inter', sans-serif;
     text-shadow: -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff, 1px 1px 0 #ffffff;
@@ -51,10 +51,10 @@ a a:focus {
 }
 
 p {
-    font-weight: 400;
+    font-size: 1rem;
+    font-weight: 200;
     font-family: 'Inter', sans-serif;
     margin: 0px;
-    font-size: 14px;
 }
 
 ul, ol {
@@ -67,49 +67,6 @@ ul li, ol li {
     list-style: none;
     display: inline;
     margin: 0 10px;
-}
-
-.section-title {
-    color: #252525;
-    font-size: 38px;
-    text-align: center;
-    letter-spacing: 1px;
-    line-height: 1;
-    margin-bottom: 48px;
-    padding: 0 10px;
-    position: relative;
-}
-
-.btn {
-    font-size: 14px;
-    padding: 10px 30px;
-    border-radius: 0px;
-    cursor: pointer;
-    font-weight: 400;
-    color: white;
-    -webkit-transition: all 0.2s linear;
-    -moz-transition: all 0.2s linear;
-    -o-transition: all 0.2s linear;
-    transition: all 0.2s linear;
-    display: inline-block;
-}
-
-.btn:focus,
-.btn:active {
-    box-shadow: none;
-    outline: none;
-    color: white;
-}
-
-.btn-lg {
-    padding: 14px 33px;
-    text-transform: uppercase;
-    font-size: 16px;
-}
-
-.btn-rm {
-    padding: 7px 10px;
-    text-transform: capitalize;
 }
 
 button:focus {
@@ -167,24 +124,20 @@ button:focus {
     display: block;
 }
 
+.member-organizations img {
+    border: 0;
+    margin: 0;
+    margin-bottom: 40px;
+    width: 400px;
+    max-width: 33%;
+}
+
 /* Small screens (mobile) */
 @media (width <= 768px) {
     .member-organizations img {
-        border: 0;
-        margin: 0;
         margin-bottom: 20px;
         width: 600px;
         max-width: 75%;
-    }
-}
-
-@media (width > 768px) {
-    .member-organizations img {
-        border: 0;
-        margin: 0;
-        margin-bottom: 40px;
-        width: 400px;
-        max-width: 33%;
     }
 }
 
@@ -198,7 +151,7 @@ button:focus {
 }
 
 .navbar {
-    padding: 100;
+    padding: 90;
     background: var(--background);
     color: white;
 }
@@ -215,7 +168,7 @@ button:focus {
 .navbar a {
     background: transparent;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 1.25rem;
 }
 
 .navbar a:hover {
@@ -305,9 +258,17 @@ button:focus {
 }
 
 #hero-area .contents h5 {
-    font-size: 36px;
+    font-size: 2rem;
     color: white;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.multi-color-text {
+    background-image: linear-gradient(to right, lightblue, var(--companyblue));
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
 .chamber-area-bg {
@@ -324,14 +285,14 @@ button:focus {
 }
 
 .chamber-text-overlay {
-    font-size: 96px;
+    font-size: 4rem;
     font-weight: 500;
     text-shadow: none;
     color: white;
 }
 
 .chamber-text-overlay-small {
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 500;
     text-shadow: none;
     text-align: center;
@@ -343,6 +304,34 @@ button:focus {
 .chamber-area-bg {
     height: 650px;
 }
+}
+
+.tech-area-bg {
+    background: radial-gradient(circle, rgba(30, 64, 124, 1.0) 0%, rgba(0, 12, 30, 1.0) 100%);
+    background-color: var(--background);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tech-area-img-parent {
+    position: relative;
+    margin: 10px;
+    top: 0;
+    left: 0;
+}
+
+.chamber_background_img {
+    position: relative;
+    top: 0;
+    left: 0;
+    border: 0;
+}
+.chamber_img {
+    position: absolute;
+    top: 20px;
+    left: 35px;
+    border: 0;
 }
 
 /* Small screens (mobile) */
@@ -418,9 +407,9 @@ input:focus {
 @media (width <= 512px) {
     #hero-area .contents .head-title {
         color: var(--companyblue);
-        font-size: 48px;
-        letter-spacing: 7px;
+        font-size: 2rem;
         font-weight: 700;
+        letter-spacing: 7px;
     }
 }
 
@@ -428,9 +417,9 @@ input:focus {
 @media (width > 512px) and (width <= 768px) {
     #hero-area .contents .head-title {
         color: var(--companyblue);
-        font-size: 84px;
-        letter-spacing: 7px;
+        font-size: 4rem;
         font-weight: 700;
+        letter-spacing: 7px;
     }
 }
 
@@ -438,9 +427,9 @@ input:focus {
 @media (width > 768px) and (width <= 1024px) {
     #hero-area .contents .head-title {
         color: var(--companyblue);
-        font-size: 84px;
-        letter-spacing: 7px;
+        font-size: 4rem;
         font-weight: 700;
+        letter-spacing: 7px;
     }
 }
 
@@ -448,68 +437,50 @@ input:focus {
 @media (width > 1024px) {
     #hero-area .contents .head-title {
         color: var(--companyblue);
-        font-size: 96px;
-        letter-spacing: 7px;
+        font-size: 5rem;
         font-weight: 700;
+        letter-spacing: 7px;
     }
 }
 
-#hero-area .contents p {
-    font-size: 30px;
-    color: white;
+#tech-area div {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#tech-area .contents p {
+    font-size: 1.25rem;
     font-weight: 400;
+    color: white;
     line-height: 30px;
     margin-bottom: 25px;
 }
 
-#hero-area .contents ul {
+#tech-area .contents ul {
+    font-size: 1.25rem;
     display: block;
     text-transform: uppercase;
-    font-size: 56px;
     line-height: 72px;
 }
 
-#hero-area .contents li {
+#tech-area .contents li {
     list-style: georgian inside url('../img/hexagon.svg');
     list-style-position: inside;
     display: block;
 }
 
-#hero-area .contents .btn {
-    margin: 25px 0px;
-    text-transform: uppercase;
-}
-
-#hero-area .banner_bottom_btn {
-    margin-top: 40px;
-}
-
-#hero-area .banner_bottom_btn i {
-    color: white;
-    font-size: 48px;
-    -webkit-transition: all 0.2s linear;
-    -moz-transition: all 0.2s linear;
-    -o-transition: all 0.2s linear;
-    transition: all 0.2s linear;
-}
-
-#hero-area .banner_bottom_btn i:hover {
-    color: #ddd;
-}
-
-#hero-area .tech-list ul {
+#tech-area .tech-list ul {
+    font-size: 1.25rem;
     font-weight: 400;
-    font-family: 'Inter', sans-serif;
-    font-size: 32px;
     text-transform: none;
-    text-align: center;
+    text-align: left;
     margin: 0px;
     padding: 10px;
     color: white;
     line-height: 30px;
 }
 
-#hero-area .tech-list li {
+#tech-area .tech-list li {
     display: list-item;
     list-style: square inside;
 }
@@ -644,7 +615,7 @@ input:focus {
 }
 
 .applications-item p {
-    font-size: 24px;
+    font-size: 1.5rem;
     opacity: 80%;
 }
 
@@ -744,27 +715,20 @@ input:focus {
 }
 
 .article h1 {
-    font-size: 48px;
+    font-size: 3em;
     font-weight: 700;
     text-shadow: -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff, 1px 1px 0 #ffffff;
 }
 
-.article h2 {
-    font-size: 24px;
-    font-weight: 700;
-    text-align: center;
-    padding: 10px;
-}
-
-.article h3, h4 {
-    font-size: 24px;
+.article h2, h3, h4 {
+    font-size: 2em;
     font-weight: 700;
     text-align: left;
     padding: 10px;
 }
 
 .article p {
-    font-size: 18px;
+    font-size: 1.5em;
     text-align: left;
     padding: 10px;
 }
@@ -929,10 +893,6 @@ input:focus {
 
 .floated {
     float: left;
-    width: 35%;
-}
-.floated2 {
-    float: left;
 }
 
 .fc-header-toolbar h2 {
@@ -941,23 +901,4 @@ input:focus {
 
 .plugnplay img {
     transform: scale(1.1);
-}
-
-.parent {
-    position: relative;
-    top: 0;
-    left: 0;
-}
-
-.chamber_background_img {
-    position: relative;
-    top: 0;
-    left: 0;
-    border: 0;
-}
-.chamber_img {
-    position: absolute;
-    top: 0;
-    left: 50px;
-    border: 0;
 }
