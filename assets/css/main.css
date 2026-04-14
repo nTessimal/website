@@ -220,7 +220,7 @@ button:focus {
 }
 
 /* Small screens (mobile) */
-@media (width <= 1024px) {
+@media (width <= 1000px) {
 .hero-area-bg {
     height: 850px;
 }
@@ -708,6 +708,7 @@ input:focus {
 }
 
 .copyright p {
+    font-size: 0.75em;
     box-align: center;
     padding-left: 10px;
     padding-bottom: 10px;
@@ -813,22 +814,9 @@ input:focus {
 
 .circle_text {
     padding: 64px 0px 0px 0px;
-}
-
-@media (width <= 768px) {
-    .circle_text h1 {
-        text-align: center;
-        color: white;
-        font-size: 36px;
-    }
-}
-
-@media (width > 768px) {
-    .circle_text h1 {
-        text-align: center;
-        color: white;
-        font-size: 54px;
-    }
+    text-align: center;
+    color: white;
+    font-size: 3rem;
 }
 
 @media (width <= 768px) {
@@ -879,16 +867,8 @@ input:focus {
     margin-left: 16px;
 }
 
-@media (width <= 1024px) {
-    .container {
-        font-size: 18px;
-    }
-}
-
-@media (width > 1024px) {
-    .container {
-        font-size: 24px;
-    }
+.container {
+    font-size: 2rem;
 }
 
 .floated {
