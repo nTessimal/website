@@ -547,7 +547,7 @@ input:focus {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    height: 512px;
+    height: 350px;
     width: 100%;
     overflow: hidden;
     position: relative;
@@ -568,8 +568,8 @@ input:focus {
 
 .news-item img {
     width: 100%;
-    justify-content: center;  /* horizontal center */
-    align-items: center;      /* vertical center */
+    justify-content: center;
+    align-items: center;
     transition: opacity 1.0s ease-in-out;
 }
 
@@ -580,38 +580,30 @@ input:focus {
 }
 
 .news-item a {
-    font-size: 24px;
+    font-size: 1.5rem;
     opacity: 80%;
 }
 
 #applications-container {
-    background: url(../img/background1.webp) no-repeat;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    height: 768px;
+    background: radial-gradient(circle,rgba(30, 64, 124, 0.5) 0%, rgba(0, 12, 30, 0.5) 100%);
+    background-color: var(--background);
+    background-size: 45%;
+    background-position: center 10%;
     width: 100%;
-    overflow: hidden;
-    position: relative;
-    font-size: 36px;
-    color: white;
-    opacity: 0.95;
-    text-align: center;
-    vertical-align: middle;
-    display: grid;
-    place-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
 }
 
-@media (width <= 768px) {
-#applications-container {
-    height: 512px;
-}
+#applications-container > * {
+    border: 1px;
+    border-radius: 5px;
+    flex: 1 1 512px;
 }
 
 .applications-item {
-    background: transparent;
-    position: absolute;
     padding: 32px;
+    text-align: center;
 }
 
 .applications-item p {
@@ -620,40 +612,10 @@ input:focus {
 }
 
 .applications-item img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    justify-content: center; /* horizontal center */
-    align-items: center;     /* vertical center */
+    padding: 32px;
     transition: opacity 1.0s ease-in-out;
     object-fit: contain;
-    position: relative;
-    width: 50%;
-    max-height: 512px;
-    z-index: 2;
-}
-
-.applications-item-gap-fill img {
-    margin-top: 10px;
-}
-
-.applications-item-deterministic-assembly img {
-    margin-top: 50px;
-}
-
-@media (width <= 768px) {
-.applications-item-gap-fill img {
-    width: 60%;
-}
-.applications-item-deterministic-assembly img {
-    width: 80%;
-}
-}
-
-@media (width <= 512px) {
-.applications-item-deterministic-assembly img {
-    width: 65%;
-}
+    max-width: 90%;
 }
 
 #dots-container {

@@ -82,27 +82,27 @@
     <!-- Divider Area Start -->
 
     <!-- Applications Area Start -->
-    <div id="applications-container" onclick="pause_applications()">
-        <div class="applications-item applications-item-gap-fill">
+    <div id="applications-container">
+        <div class="applications-item">
             <h2>Gap Fill</h2>
-            <br>
             <p>By combining electrophoretic deposition with supercritical drying, ultra-high aspect ratio vias can be filled with a wide array of non-plateable materials.</p>
-            <br>
             <img src="assets/img/high-aspect-via-fill.webp" alt="Gap Fill">
         </div>
-        <div class="applications-item applications-item-deterministic-assembly" hidden>
+        <div class="applications-item">
             <h2>Deterministic Assembly</h2>
-            <br>
             <p>By combining electrophoretic forces, dielectrophoretic forces, and supercritical drying nanoparticles can be deterministically assembled across a full wafer simultaneously.</p>
-            <br>
             <img src="assets/img/deterministic-assembly.webp" alt="Deterministic Assembly">
+        </div>
+        <div class="applications-item">
+            <h2>Nanoparticle Deposition</h2>
+            <p>Electrophoretic nanoparticle thick film and uniform micro-bump deposition coupled with in-situ supercritical drying to prevent cracking and enhance densification.</p>
+            <img src="assets/img/electrophoretic-deposition.webp" alt="Nanoparticle Deposition">
         </div>
     </div>
     <!-- Applications Area End -->
 
     <!-- Divider Area Start -->
     <section id="divider3" class="divider-area section-padding">
-        <div id="news-dots-container"></div>
     </section>
     <!-- Divider Area Start -->
 
@@ -116,7 +116,7 @@
 
     <!-- Divider Area Start -->
     <section id="divider4" class="divider-area section-padding">
-        <div id="apps-dots-container"></div>
+        <div id="news-dots-container"></div>
     </section>
     <!-- Divider Area Start -->
 
@@ -159,22 +159,13 @@
 
         const news_items = document.querySelectorAll('.news-item');
         const news_dots_container = document.getElementById('news-dots-container');
-        const applications_items = document.querySelectorAll('.applications-item');
-        const apps_dots_container = document.getElementById('apps-dots-container');
 
         let news_index = 0;
-        let applications_index = 0;
         let news_paused = false;
-        let applications_paused = false;
 
         /// @function pause_news
         function pause_news() {
             news_paused = !news_paused;
-        }
-
-        /// @function pause_applications
-        function pause_applications() {
-            applications_paused = !applications_paused;
         }
 
         /// @function get_browser_name
@@ -299,33 +290,6 @@
             }
         }
 
-        /// @function hide_application_item
-        function hide_application_item(i) {
-            applications_items[i].hidden = false;
-            apps_dots[i].classList.remove('active');
-            for (const child of applications_items[i].children) {
-                child.hidden = false;
-            }
-        }
-
-        /// @function show_application_item
-        function show_application_item(i) {
-            applications_items[i].hidden = true;
-            apps_dots[i].classList.add('active');
-            for (const child of applications_items[i].children) {
-                child.hidden = true;
-            }
-        }
-
-        /// @function rotate_application_item
-        function rotate_application_item() {
-            if (!applications_paused) {
-                hide_application_item(applications_index);
-                applications_index = (applications_index + 1) % applications_items.length;
-                show_application_item(applications_index);
-            }
-        }
-
         // Get the latest news items.
         send_get_request_async(NEWS_API_URL, function (response_code, response_text) {
             if (response_code == 200) {
@@ -369,35 +333,10 @@
             news_dots_container.appendChild(dot);
         });
 
-        // Create dots based on number of application area items.
-        applications_items.forEach((_, i) => {
-            const dot = document.createElement('span');
-            dot.classList.add('dot');
-            dot.onclick = function() {
-                hide_application_item(applications_index);
-                applications_index = i;
-                show_application_item(applications_index);
-            };
-            dot.addEventListener('mouseover', function () {
-                dot.style.cursor = 'pointer';
-            });
-            dot.addEventListener('mouseout', function () {
-                dot.style.cursor = 'default';
-            });
-
-            if (i === 0) dot.classList.add('active');
-            apps_dots_container.appendChild(dot);
-        });
-
         const news_dots = news_dots_container.querySelectorAll('.dot');
-        const apps_dots = apps_dots_container.querySelectorAll('.dot');
 
         // Rotate the news items.
         setInterval(() => { rotate_news_item(); }, 5000); // rotate every 5 seconds
-
-        // Rotate the application items.
-        rotate_application_item();
-        setInterval(() => { rotate_application_item(); }, 7500); // rotate every 7.5 seconds
 
         // Report browser usage stats.
         let browser_str = get_browser_name();
