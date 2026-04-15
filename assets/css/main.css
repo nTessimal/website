@@ -226,10 +226,6 @@ button:focus {
 }
 }
 
-.hero-area-bg2 {
-    background: var(--companyblue);
-}
-
 #hero-area {
     color: white;
     overflow: hidden;
@@ -261,6 +257,13 @@ button:focus {
     font-size: 2rem;
     color: white;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.calendar-area-bg {
+    background: url(../img/hero-area.webp) no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 1500px;
 }
 
 .multi-color-text {
