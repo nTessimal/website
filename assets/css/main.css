@@ -373,13 +373,9 @@ button:focus {
 }
 
 .chamber-area-bg {
-    background-size: 45%;
-    background-position: center 30%;
-    height: 600px;
-}
-
-.chamber-area-bg {
-    height: 650px;
+    background-size: 90%;
+    background-position: center 10%;
+    height: 500px;
 }
 
 .chamber-text-overlay {
@@ -387,7 +383,7 @@ button:focus {
 }
 
 .chamber-text-overlay-small {
-    font-size: 1rem;
+    font-size: 1.25rem;
 }
 }
 
