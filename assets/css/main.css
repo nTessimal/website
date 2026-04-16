@@ -385,6 +385,7 @@ button:focus {
     position: relative;
     margin: 10px;
     padding-right: 20px;
+    max-width: 95%;
     top: 0;
     left: 0;
 }
