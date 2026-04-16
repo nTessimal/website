@@ -153,6 +153,7 @@ button:focus {
 .navbar {
     padding: 90;
     background: var(--background);
+    align-items: center;
     color: white;
 }
 
@@ -805,6 +806,7 @@ input:focus {
 
 .schedule_header {
     margin-bottom: 64px;
+    font-family: "Inter";
 }
 
 .dialog form {
