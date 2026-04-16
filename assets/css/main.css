@@ -174,8 +174,55 @@ button:focus {
 .navbar a:hover {
     color: black;
     background: rgba(255, 255, 255, 0.7);
-    box-shadow: 0 0 20px 12px rgb(255, 255, 255, 0.8);
+    box-shadow: 0 0 10px 6px rgb(255, 255, 255, 0.9);
     border-radius: 10px 10px;
+}
+
+.dropdown-btn {
+    background: transparent;
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-weight: 400;
+    padding: 0px 4px;
+    border-radius: 0px;
+    border: 0px;
+    cursor: pointer;
+    color: white;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover { background-color: #f1f1f1; }
+.dropdown:hover .dropdown-content { display: block; }
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.dropdown .dropdown-item:focus,
+.dropdown .dropdown-item:hover,
+.dropdown .dropdown-item.active {
+    color: white;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    background: transparent;
 }
 
 .dropdown-content a:hover {
@@ -723,52 +770,6 @@ input:focus {
 
 .article a {
     color: black;
-}
-
-.dropdown-btn {
-    font-size: 14px;
-    font-weight: 400;
-    padding: 8px 4px;
-    border-radius: 0px;
-    border: 0px;
-    cursor: pointer;
-    color: white;
-    background: transparent;
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    right: 0;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown-content a:hover { background-color: #f1f1f1; }
-.dropdown:hover .dropdown-content { display: block; }
-
-.dropdown-toggle::after {
-    display: none;
-}
-
-.dropdown .dropdown-item:focus,
-.dropdown .dropdown-item:hover,
-.dropdown .dropdown-item.active {
-    color: white;
-}
-
-.dropdown-item.active, .dropdown-item:active {
-    background: transparent;
 }
 
 .circle_text {

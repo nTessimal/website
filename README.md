@@ -10,7 +10,7 @@ jQuery is used to insert the header and footer on each page, thus preventing cod
 python3 -m http.server
 ```
 
-The website will then be available on the local machine at
+The website will then be available on the local machine at:
 
 ```
 localhost:8000
