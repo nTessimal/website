@@ -324,7 +324,7 @@ button:focus {
 .chamber-area-bg {
     background: 
         radial-gradient(circle,rgba(30, 64, 124, 0.5) 0%, rgba(0, 12, 30, 0.5) 100%),
-        url(../img/chamber.png) no-repeat transparent;
+        url(../img/chamber.webp) no-repeat transparent;
     background-color: var(--background);
     background-size: 45%;
     background-position: center 10%;
