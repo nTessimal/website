@@ -179,6 +179,7 @@ button:focus {
     padding: 90;
     background: var(--background);
     justify-content: center;
+    text-align: center;
     color: white;
 }
 
