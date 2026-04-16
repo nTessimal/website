@@ -371,6 +371,14 @@ button:focus {
 .chamber-area-bg {
     height: 650px;
 }
+
+.chamber-text-overlay {
+    font-size: 3rem;
+}
+
+.chamber-text-overlay-small {
+    font-size: 1rem;
+}
 }
 
 .tech-area-bg {
@@ -399,6 +407,7 @@ button:focus {
 }
 .chamber_img {
     position: absolute;
+    max-width: 95%;
     top: 35px;
     left: 35px;
     border: 0;
