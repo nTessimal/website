@@ -325,6 +325,7 @@ button:focus {
 }
 
 .multi-color-text {
+    font-size: 4rem;
     background-image: linear-gradient(to right, lightblue, var(--companyblue));
     -webkit-background-clip: text;
     -moz-background-clip: text;
@@ -332,9 +333,13 @@ button:focus {
     color: transparent;
 }
 
+.multi-color-text a:hover, span:hover {
+    color: white;
+}
+
 .chamber-area-bg {
     background: 
-        radial-gradient(circle,rgba(30, 64, 124, 0.5) 0%, rgba(0, 12, 30, 0.5) 100%),
+        radial-gradient(circle, rgba(30, 64, 124, 0.5) 0%, rgba(0, 12, 30, 0.5) 100%),
         url(../img/chamber.webp) no-repeat transparent;
     background-color: var(--background);
     background-size: 45%;
