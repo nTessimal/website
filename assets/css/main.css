@@ -367,11 +367,13 @@ button:focus {
 .tech-area-img-parent {
     position: relative;
     margin: 10px;
+    padding-right: 20px;
     top: 0;
     left: 0;
 }
 
 .chamber_background_img {
+    opacity: 0.5;
     position: relative;
     top: 0;
     left: 0;
@@ -379,7 +381,7 @@ button:focus {
 }
 .chamber_img {
     position: absolute;
-    top: 20px;
+    top: 35px;
     left: 35px;
     border: 0;
 }
