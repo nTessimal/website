@@ -203,7 +203,11 @@ button:focus {
     font-size: 1.25rem;
 }
 
-.navbar a:hover, span:hover {
+.navbar a:hover {
+    color: gray;
+}
+
+.navbar span:hover {
     color: gray;
 }
 
@@ -339,7 +343,7 @@ button:focus {
     color: transparent;
 }
 
-.multi-color-text a:hover, span:hover {
+.multi-color-text span:hover {
     background-image: linear-gradient(to right, lightblue, var(--companyblue));
     color: transparent;
 }
