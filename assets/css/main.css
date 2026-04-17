@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Chicago';
-    src: url('assets/fonts/ChicagoFLF.ttf') format('truetype');
+    src: url('../fonts/ChicagoFLF.ttf') format('truetype');
 }
 
 html {
@@ -64,8 +64,8 @@ p {
 
 ul, ol {
     list-style: outside none none;
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
 }
 
 ul li, ol li {
@@ -130,8 +130,8 @@ button:focus {
 }
 
 .member-organizations img {
-    border: 0;
-    margin: 0;
+    border: 0px;
+    margin: 0px;
     margin-bottom: 40px;
     width: 400px;
     max-width: 33%;
@@ -169,7 +169,7 @@ button:focus {
     height: 2px;
     background: linear-gradient(to right, lightgray, darkgray);
     bottom: -5px;
-    left: 0;
+    left: 0px;
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.4s ease-out;
@@ -223,7 +223,7 @@ button:focus {
 .dropdown-content {
     display: none;
     position: absolute;
-    right: 0;
+    right: 0px;
     background-color: #fdfdfd;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
@@ -269,7 +269,7 @@ button:focus {
     .navbar-brand {
         position: absolute;
         padding: 0px 15px;
-        top: 0;
+        top: 0px;
     }
     .navbar-brand img {
         width: 75%;
@@ -405,16 +405,16 @@ button:focus {
     margin: 10px;
     padding-right: 20px;
     max-width: 95%;
-    top: 0;
-    left: 0;
+    top: 0px;
+    left: 0px;
 }
 
 .chamber_background_img {
     opacity: 0.5;
     position: relative;
-    top: 0;
-    left: 0;
-    border: 0;
+    top: 0px;
+    left: 0px;
+    border: 0px;
 }
 
 .chamber_img {
@@ -422,7 +422,7 @@ button:focus {
     max-width: 95%;
     top: 35px;
     left: 35px;
-    border: 0;
+    border: 0px;
 }
 
 /* Small screens (mobile) */
@@ -468,8 +468,8 @@ button:focus {
 }
 
 form br {
-    height: 0;
-    width: 0;
+    height: 0px;
+    width: 0px;
 }
 
 form textarea {
@@ -483,15 +483,15 @@ form textarea {
 form button {
     background: lightgrey;
     padding: 0.7em;
-    border: 0;
+    border: 0px;
 }
 
 form label {
     color: black;
     text-align: left;
     display: block;
-    padding: 0;
-    margin: 0;
+    padding: 0px;
+    margin: 0px;
 }
 
 input:focus {
@@ -825,7 +825,7 @@ input:focus {
 }
 
 .dialog form {
-    margin: 0;
+    margin: 0px;
     padding: 32px;
     max-width: 100%;
 }
