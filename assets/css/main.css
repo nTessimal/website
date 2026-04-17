@@ -181,7 +181,7 @@ button:focus {
 }
 
 .navbar {
-    padding: 90px;
+    padding: 90;
     background: var(--background);
     justify-content: center;
     text-align: center;
