@@ -676,10 +676,10 @@ input:focus {
 }
 
 .applications-item img {
-    padding: 32px;
+    padding: 16px;
     transition: opacity 1.0s ease-in-out;
     object-fit: contain;
-    max-width: 90%;
+    max-width: 95%;
 }
 
 .applications-item div:hover {
