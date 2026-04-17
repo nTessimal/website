@@ -676,7 +676,7 @@ input:focus {
 }
 
 .applications-item img {
-    padding: 16px;
+    padding: 16px 0px;
     transition: opacity 1.0s ease-in-out;
     object-fit: contain;
     max-width: 95%;
