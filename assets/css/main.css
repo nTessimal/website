@@ -340,7 +340,8 @@ button:focus {
 }
 
 .multi-color-text a:hover, span:hover {
-    color: white;
+    background-image: linear-gradient(to right, lightblue, var(--companyblue));
+    color: transparent;
 }
 
 .chamber-area-bg {
