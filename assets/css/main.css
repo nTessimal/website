@@ -682,8 +682,9 @@ input:focus {
     max-width: 95%;
 }
 
-.applications-item div:hover {
-    opacity: 0.5;
+.applications-item *:hover {
+    opacity: 0.9;
+    transform: scale(1.075);
 }
 
 #dots-container {
