@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Chicago';
+    src: url('assets/fonts/ChicagoFLF.ttf') format('truetype');
+}
+
 html {
     overflow-x: hidden;
     --companyblue: #1E407C;
@@ -292,7 +297,7 @@ button:focus {
 }
 
 #hero-area h1 {
-    font-family: "Krungthep";
+    font-family: 'Chicago', sans-serif;
 }
 
 #hero-area .overlay {
