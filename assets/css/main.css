@@ -655,7 +655,7 @@ input:focus {
 
 #applications-container > * {
     border: 1px;
-    border-radius: 5px;
+    border-radius: 8px;
     flex: 1 1 512px;
 }
 
@@ -664,10 +664,12 @@ input:focus {
     padding: 32px;
     text-align: center;
     border-style: round;
-    border-width: 5px;
+    border-width: 8px;
     border-radius: 16px;
     color: black;
-    background-color: lightgray;
+    background: url(../img/hex-fade.webp);
+    background-size: fit;
+    background-position: bottom right;
     text-shadow: none;
 }
 
@@ -828,6 +830,10 @@ input:focus {
 .schedule_header {
     margin-bottom: 64px;
     font-family: "Inter";
+}
+
+.schedule_header p {
+    font-size: 2.5rem;
 }
 
 .dialog form {
