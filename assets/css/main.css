@@ -834,6 +834,7 @@ input:focus {
 
 .schedule_header p {
     font-size: 2.5rem;
+    line-height: 1.5;
 }
 
 .dialog form {
