@@ -595,21 +595,14 @@ input:focus {
 }
 
 #news-container {
-    background: url(../img/news.webp) no-repeat;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    height: 350px;
+    background: radial-gradient(circle,rgba(30, 64, 124, 0.5) 0%, rgba(0, 12, 30, 0.5) 100%);
+    background-color: var(--background);
+    background-size: 45%;
+    background-position: center 10%;
     width: 100%;
-    overflow: hidden;
-    position: relative;
-    font-size: 36px;
-    color: white;
-    opacity: 0.95;
-    text-align: center;
-    vertical-align: middle;
-    display: grid;
-    place-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
 }
 
 .news-item {
