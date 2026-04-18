@@ -35,31 +35,29 @@
     </div>
     <!-- Nav Bar End -->
 
-    <!-- Hero Area Start -->
+    <!-- Form Start -->
     <header id="header-wrap">
-        <div id="hero-area" class="hero-area-bg">
+        <div id="tech-area" class="tech-area-bg">
             <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-12 text-center">
-                    <div class="contents">
-                        <form name="contact_us" action="javascript:submit_contact_via_bot()" accept-charset="utf-8">
-                            <label for="name">Name</label><br>
-                            <input type="text" name="name" id="contact_name" value=""><br>
-                            <label for="name">Email</label><br>
-                            <input type="text" name="email" id="contact_email" value=""><br>
-                            <label for="name">Phone</label><br>
-                            <input type="text" name="phone" id="contact_phone" value=""><br>
-                            <label for="message">Message</label><br>
-                            <textarea id="message" rows="10" required></textarea><br>
-                            <input type="submit" value="Send">
-                        </form>
-                    </div>
+                    <form name="contact_us" action="javascript:submit_contact_via_bot()" accept-charset="utf-8">
+                        <label for="name">Name</label><br>
+                        <input type="text" name="name" id="contact_name" value=""><br>
+                        <label for="name">Email</label><br>
+                        <input type="text" name="email" id="contact_email" value=""><br>
+                        <label for="name">Phone</label><br>
+                        <input type="text" name="phone" id="contact_phone" value=""><br>
+                        <label for="message">Message</label><br>
+                        <textarea id="message" rows="10" required></textarea><br>
+                        <input type="submit" value="Send">
+                    </form>
                 </div>
             </div>
             </div>
         </div>
     </header>
-    <!-- Hero Area End -->
+    <!-- Form End -->
 
     <!-- Footer Section Start -->
     <footer class="footer-area section-padding">
@@ -129,6 +127,10 @@
                 alert("Your phone number cannot be blank.");
                 return;
             }
+            if (!is_valid_phone_number(phone)) {
+                alert("The phone number is invalid.");
+                return;
+            }
 
             // Package all the data into a dictionary.
             var values = {}
@@ -139,7 +141,6 @@
 
             // Send.
             let api_url = "https://ntessimal.tech/bot/api/1.0/submit_contact_info";
-//            var api_url = "http://localhost:5252/1.0/submit_contact_info";
             send_post_request_async(api_url, values, "application/json; charset=utf-8", function(status, response) {
                 if (status == 200) {
                     alert("Your information was submitted. We'll be in touch soon!");

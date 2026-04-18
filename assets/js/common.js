@@ -33,6 +33,13 @@ function is_valid_email(email) {
     return re.test(email);
 }
 
+/// @function is_valid_phone_number
+/// Allows 1234567890, (123) 456-7890, 123-456-7890, +1 123 456 7890
+function is_valid_phone_number(str) {
+    const phone_regex = /^\+?1?\s*\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
+    return phone_regex.test(str);
+}
+
 /// @function send_get_request_async
 /// Sends an HTTP GET request and waits for the response.
 function send_get_request_async(url, content_type, callback) {
