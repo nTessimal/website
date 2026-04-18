@@ -303,7 +303,7 @@
                 var news_index = 0;
 
                 news_obj.slice(-3).forEach(news_item => {
-                    news_items[news_index].innerHTML = "<h2>" + format_date(news_item["date"]) + "</h2><br><br><a href=\"" + news_item['link'] + "\">" + remove_trailing_hashtags(news_item["text"]) + "</a>";
+                    news_items[news_index].innerHTML = "<h2>" + format_date(news_item["date"]) + "</h2><br><a href=\"" + news_item['link'] + "\">" + remove_trailing_hashtags(news_item["text"]) + "</a>";
                     news_index += 1;
                 });
             }

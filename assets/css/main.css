@@ -612,6 +612,20 @@ input:focus {
     place-items: center;
 }
 
+.news-item {
+    margin: 16px;
+    padding: 32px;
+    text-align: center;
+    border-style: round;
+    border-width: 8px;
+    border-radius: 16px;
+    color: black;
+    background: url(../img/hex-fade.webp);
+    background-size: fit;
+    background-position: bottom right;
+    text-shadow: none;
+}
+
 .news-item img {
     width: 100%;
     justify-content: center;
@@ -619,15 +633,10 @@ input:focus {
     transition: opacity 1.0s ease-in-out;
 }
 
-.news-item {
-    background: transparent;
-    position: absolute;
-    padding: 32px;
-}
-
 .news-item a {
     font-size: 1.5rem;
     opacity: 80%;
+    color: black;
 }
 
 @media (width <= 768px) {
