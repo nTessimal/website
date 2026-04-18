@@ -309,7 +309,7 @@
 
             // Initialize the FullCalendar
             var calendar = new FullCalendar.Calendar(calendar_element, {
-                headerToolbar: { center: 'dayGridMonth,dayGridWeek' },
+                headerToolbar: { center: 'dayGridMonth,dayGridWeek', right: 'prev,next' },
                 navLinks: true, // can click day/week names to navigate views
                 editable: false, // is read-only
                 eventSources: [
