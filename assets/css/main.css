@@ -615,6 +615,7 @@ input:focus {
     color: black;
     background: url(../img/hex-fade.webp);
     background-size: fit;
+    background-repeat: none;
     background-position: bottom right;
     text-shadow: none;
 }
