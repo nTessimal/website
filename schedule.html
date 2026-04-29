@@ -166,7 +166,7 @@
 
             // Send.
             let api_url = "https://ntessimal.tech/bot/api/1.0/submit_meeting_request";
-//            var api_url = "http://localhost:5252/1.0/submit_meeting_request";
+//            var api_url = "http://localhost:5252/api/1.0/submit_meeting_request";
             send_post_request_async(api_url, values, "application/json; charset=utf-8", function(status, response) {
                 if (status == 200) {
                     alert("Your request was submitted, we'll be in touch soon!");
