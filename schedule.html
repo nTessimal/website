@@ -126,6 +126,26 @@
 
         var g_meeting_date = null;
 
+        /// @function time_to_milliseconds
+        function time_to_milliseconds(time_str) {
+            const [time, modifier] = time_str.trim().split(" ");
+            let [hours, minutes, seconds] = time.split(":").map(Number);
+
+            // Convert to 24-hour format
+            if (modifier === "PM" && hours !== 12) {
+                hours += 12;
+            }
+            if (modifier === "AM" && hours === 12) {
+                hours = 0;
+            }
+
+            return (
+                hours * 60 * 60 * 1000 +
+                minutes * 60 * 1000 +
+                seconds * 1000
+            );
+        }
+
         /// @function send_contact
         /// Posts contact information to the bot, who will, in turn update the calendar and post to Slack.
         function send_contact() {
@@ -155,18 +175,18 @@
             }
 
             // Package all the data into a dictionary.
-            var values = {}
-            values["name"] = name_elem.value
-            values["organization"] = organization_elem.value
-            values["email"] = email_elem.value
-            values["phone"] = phone_elem.value
-            values["notes"] = notes_elem.value
-            values["date"] = g_meeting_date
-            values["time"] = time_elem.value
+            var values = {};
+            values["name"] = name_elem.value;
+            values["organization"] = organization_elem.value;
+            values["email"] = email_elem.value;
+            values["phone"] = phone_elem.value;
+            values["notes"] = notes_elem.value;
+            values["date"] = g_meeting_date + time_to_milliseconds(time_elem.value);
+            values["time"] = time_elem.value;
 
             // Send.
             let api_url = "https://ntessimal.tech/bot/api/1.0/submit_meeting_request";
-//            var api_url = "http://localhost:5252/api/1.0/submit_meeting_request";
+//            let api_url = "http://localhost:5252/api/1.0/submit_meeting_request";
             send_post_request_async(api_url, values, "application/json; charset=utf-8", function(status, response) {
                 if (status == 200) {
                     alert("Your request was submitted, we'll be in touch soon!");
