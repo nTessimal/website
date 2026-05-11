@@ -875,3 +875,18 @@ input:focus {
 .plugnplay img {
     transform: scale(1.1);
 }
+
+.contact h1 {
+    font-size: 3rem;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    text-shadow: -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff, 1px 1px 0 #ffffff;
+}
+
+.contact h3 {
+    font-size: 1.5rem;
+    font-weight: 200;
+    font-family: 'Inter', sans-serif;
+    text-shadow: -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff, 1px 1px 0 #ffffff;
+    text-align: center;
+}
