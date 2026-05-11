@@ -885,8 +885,8 @@ input:focus {
 
 .contact h3 {
     font-size: 1.5rem;
-    font-weight: 200;
+    font-weight: 100;
     font-family: 'Inter', sans-serif;
-    text-shadow: -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff, 1px 1px 0 #ffffff;
+    text-shadow: none;
     text-align: center;
 }
