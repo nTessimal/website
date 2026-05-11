@@ -877,10 +877,11 @@ input:focus {
 }
 
 .contact h1 {
-    font-size: 3rem;
+    font-size: 4rem;
     font-weight: 500;
     font-family: 'Inter', sans-serif;
-    text-shadow: -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff, 1px 1px 0 #ffffff;
+    text-shadow: none;
+    color: white;
 }
 
 .contact h3 {
@@ -889,4 +890,11 @@ input:focus {
     font-family: 'Inter', sans-serif;
     text-shadow: none;
     text-align: center;
+}
+
+/* Small screens (mobile) */
+@media (width <= 1320px) {
+.contact h1 {
+    font-size: 3rem;
+}
 }
